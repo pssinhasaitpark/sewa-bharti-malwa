@@ -1,0 +1,11 @@
+/* Hide the default caret */
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+/* Style the custom dropdown icon */
+.custom-dropdown-icon {
+  font-size: 0.7em;
+  margin-left: 5px;
+}
+

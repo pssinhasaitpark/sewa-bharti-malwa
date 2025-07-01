@@ -1,0 +1,38 @@
+/* MyCarousel.css */
+.carousel-caption {
+  position: static;
+  padding: 20px;
+  background-color: #f8f9fa;
+  text-align: left;
+  color: black;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.btn-read-more {
+  width: 180.33px;
+  height: 45px;
+  border-radius: 5px;
+  background-color: #f15700;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Optional hover effect */
+.btn-read-more:hover {
+  background-color: #d44c00;
+}
+
+/* Custom CSS to control the transition speed */
+.carousel-item {
+  transition: transform 2s ease-in-out; 
+  padding: 3%;
+  border: 1px solid #d3d3d3; 
+  box-sizing: border-box; 
+}
