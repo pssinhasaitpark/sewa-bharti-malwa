@@ -1,16 +1,26 @@
 /* MyCarousel.css */
+.carousel {
+  height: 500px; /* Set a fixed height for the carousel */
+}
+
+.carousel-item {
+  height: 100%; 
+  padding: 10px;/* Ensure carousel items take the full height of the carousel */
+}
+
+.carousel-item img {
+  height: 300px; /* Set a fixed height for the images */
+  object-fit: cover; /* Ensure images cover the area without distortion */
+}
+
 .carousel-caption {
   position: static;
   padding: 20px;
   background-color: #f8f9fa;
   text-align: left;
   color: black;
-}
-
-.button-container {
-  display: flex;
-  justify-content: flex-start;
-  margin-top: 10px;
+  height: 326px; /* Set a fixed height for the caption area */
+  overflow-y: auto;
 }
 
 .btn-read-more {
@@ -22,6 +32,7 @@
   border: none;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 /* Optional hover effect */
@@ -31,8 +42,12 @@
 
 /* Custom CSS to control the transition speed */
 .carousel-item {
-  transition: transform 2s ease-in-out; 
-  padding: 3%;
-  border: 1px solid #d3d3d3; 
-  box-sizing: border-box; 
+  transition: transform 2s ease-in-out;
+  border: 1px solid #d3d3d3;
+  box-sizing: border-box;
+}
+
+.carousel-indicators
+{
+  display: none;
 }

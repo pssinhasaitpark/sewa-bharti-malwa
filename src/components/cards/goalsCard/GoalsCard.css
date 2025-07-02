@@ -1,0 +1,181 @@
+.goals-card {
+  border: none;
+  border-radius: 12px;
+  padding: 24px 18px 18px 18px;
+  /* background: #ececec; */
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+}
+
+.goals-card .card-title {
+  color: #fd7e14;
+  font-weight: bold;
+  padding-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.goals-card .goal-icon {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 48px;
+  height: 48px;
+}
+
+.goal-item {
+  margin-bottom: 0;
+  padding-bottom: 12px;
+  padding-top: 12px;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: none;
+}
+
+.goal-text-bar-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.goal-text-row {
+  width: 100%;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s;
+}
+
+.arrow {
+  color: #222;
+  margin-right: 10px;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.goal-text {
+  font-size: 16px;
+  color: #222;
+  flex: 0 0 auto;
+  min-width: 220px;
+  transition: color 0.3s;
+  position: relative;
+  z-index: 2;
+  white-space: pre-line;
+}
+
+.segmented-progress-line {
+  width: 100%;
+  display: flex;
+  height: 3px;
+  border-radius: 2px;
+  background: none;
+  overflow: hidden;
+  margin-top: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Overlay for expanding effect */
+.segmented-progress-overlay {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+  display: flex;
+  flex-direction: row;
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 10;
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+/* Expand overlay on hover of any goal-item */
+.goal-item:hover .segmented-progress-overlay,
+.goal-item:focus-within .segmented-progress-overlay {
+  height: 100%;
+  pointer-events: auto;
+}
+
+/* Make text and arrow white when overlay is open */
+.goal-item:hover .goal-text,
+.goal-item:hover .arrow,
+.goal-item:focus-within .goal-text,
+.goal-item:focus-within .arrow {
+  color: #fff;
+}
+
+.segmented-progress-overlay .segment {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.segment-label {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  color: #fff;
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 3;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Overlay content (text and arrow) */
+.overlay-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 20;
+  justify-content: flex-start;
+  padding-left: 0;
+}
+
+.overlay-row {
+  width: 100%;
+  color: #fff;
+}
+
+.segment.orange {
+  background: #fd7e14;
+}
+.segment.green {
+  background: #28a745;
+}
+.segment.blue {
+  background: #3b3bff;
+}
+
+.segmented-progress-line .segment {
+  height: 100%;
+}
+
+.list-item:hover {
+  background: none;
+}
+.list-item:hover .arrow {
+  color: #222;
+}
