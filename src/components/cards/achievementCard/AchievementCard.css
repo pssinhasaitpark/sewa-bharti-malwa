@@ -1,0 +1,27 @@
+.list-design {
+  margin-bottom: 15px;
+  padding: 1px 0;
+  transition: background-color 0.3s;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.list-design:hover {
+  background-color: #fb8241;
+}
+
+.arrow {
+  color: black;
+  transition: color 0.3s;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.list-design:hover .arrow {
+  color: #28a745 !important;
+}
+
+.list-text {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}

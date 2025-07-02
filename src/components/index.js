@@ -1,5 +1,14 @@
 import Header from "./header/Header.jsx";
 import SliderSection from "./sliderSection/SectionleftSlider.jsx";
 import SliderRight from "./sliderRight/SliderRight.jsx";
-
-export { Header, SliderSection, SliderRight };
+import AchievementsCard from "./cards/achievementCard/AchievementCard.jsx";
+import GoalsCard from "./cards/goalsCard/GoalsCard.jsx";
+import OpportunitiesCard from "./cards/opportunitiesCard/OpportunitiesCard.jsx";
+export {
+  Header,
+  SliderSection,
+  SliderRight,
+  AchievementsCard,
+  GoalsCard,
+  OpportunitiesCard,
+};

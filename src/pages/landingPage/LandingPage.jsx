@@ -1,7 +1,15 @@
 import React from "react";
 import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Header, SliderSection, SliderRight } from "../../components/index"; // Adjust the path as necessary
+
+import './LandingPage.css'
+import {
+  Header,
+  SliderSection,
+  SliderRight,
+  AchievementsCard,
+  GoalsCard,
+  OpportunitiesCard,
+} from "../../components/index"; // Adjust the path as necessary
 const HomeLayout = () => {
   return (
     <div className="d-flex flex-column min-vh-100 ">
@@ -14,11 +22,25 @@ const HomeLayout = () => {
             <SliderSection />
           </Col>
 
-          <Col md={4} className="sidebar">
+          <Col md={4} className="sidebar m-0 p-0 ">
             <SliderRight />
           </Col>
         </Row>
       </div>
+    <div className="mt-4 custom-width">
+  <Row className="justify-content-md-center">
+    <Col xs={12} md={4} className="mb-4">
+      <AchievementsCard />
+    </Col>
+    <Col xs={12} md={4} className="mb-4">
+      <GoalsCard />
+    </Col>
+    <Col xs={12} md={4} className="mb-4">
+      <OpportunitiesCard />
+    </Col>
+  </Row>
+</div>
+
 
       <footer className="bg-dark text-white text-center py-3">
         <Container>
