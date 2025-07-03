@@ -9,8 +9,9 @@ import {
   AchievementsCard,
   GoalsCard,
   OpportunitiesCard,
-  FlagShipComponent,
   Banner,
+  FlagShipComponent,
+  MemoriesSlider,
 } from "../../components/index"; // Adjust the path as necessary
 const HomeLayout = () => {
   return (
@@ -48,11 +49,21 @@ const HomeLayout = () => {
       <Row className="custom-width">
         <p>
           What We
-          Are&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;____________
+          ARe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;____________
         </p>
       </Row>
-      <div className="custom-width">
+      <div className="custom-width my-4 ">
         <FlagShipComponent />
+      </div>
+      <div className="custom-width my-4 ">
+        <Row>
+               <Col md={6} className="component component-1">
+                {/* <MemoriesSlider/> */}
+               </Col>
+               <Col md={6} className="component component-2">
+            
+               </Col>
+             </Row>
       </div>
       <footer className="bg-dark text-white text-center py-3">
         <Container>

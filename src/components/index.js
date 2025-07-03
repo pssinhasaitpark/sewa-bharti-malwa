@@ -6,6 +6,7 @@ import GoalsCard from "./cards/goalsCard/GoalsCard.jsx";
 import OpportunitiesCard from "./cards/opportunitiesCard/OpportunitiesCard.jsx";
 import Banner from "./banner/Banner.jsx";
 import FlagShipComponent from "./flagShipComponent/FlagShipComponent.jsx";
+import MemoriesSlider from "./memoriesSliderComponent/MemoriesSlider.jsx";
 export {
   Header,
   SliderSection,
@@ -14,5 +15,6 @@ export {
   GoalsCard,
   OpportunitiesCard,
   Banner,
-  FlagShipComponent
+  FlagShipComponent,
+  MemoriesSlider,
 };
