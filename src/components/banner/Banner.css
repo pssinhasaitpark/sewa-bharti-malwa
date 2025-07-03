@@ -1,0 +1,39 @@
+
+.about-us-container {
+  background-image: url("/home/akash/seva-bharti-malwa/src/assets/icons/BannerImage.svg");
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.about-us-subtitle {
+  color: #000000;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.about-us-title {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 60px;
+  letter-spacing: 0%;
+  text-align: center;
+  text-transform: capitalize;
+  margin-bottom: 2rem;
+}
+
+.Serving-Society{
+  color: #fd7e14;
+}
+.upholding-dharma {
+  color: #011659;
+}
+
+.about-us-content {
+  font-size: 1.1rem;
+  color: #495057;
+  margin-top: 1rem;
+  line-height: 1.6;
+}

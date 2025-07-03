@@ -27,7 +27,7 @@ const AchievementsCard = () => {
         }}
       />
       <Card.Body>
-        <div className="d-flex justify-content-between align-items-start mb-5">
+        <div className="d-flex justify-content-between align-items-start mb-1">
           <Card.Title
             className="fw-bolder fs-3 mt-3 "
             style={{
@@ -50,6 +50,15 @@ const AchievementsCard = () => {
         </div>
         <Card.Text>
           <ul className="list-unstyled">
+            <li className="list-item list-design">
+              <div className="d-flex align-items-start">
+                <IoIosArrowRoundForward
+                  size={40}
+                  className="arrow text-muted"
+                />
+                <span className="list-text  py-2">Highlight Key Achievements And Success Stories</span>
+              </div>
+            </li>
             <li className="list-item list-design">
               <div className="d-flex align-items-start">
                 <IoIosArrowRoundForward

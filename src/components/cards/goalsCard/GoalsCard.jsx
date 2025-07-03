@@ -63,7 +63,7 @@ const GoalsCard = () => {
         }}
       />
       <Card.Body className="p-0 mt-2">
-        <Card.Title className="fs-4 p-2">Our Next Goal</Card.Title>
+        <Card.Title className="fs-4 p-2 mb-4">Our Next Goal</Card.Title>
         <img src={GoalsIcon} alt="Goals Icon" className="goal-icon" />
         {goals.map((goal, idx) => (
           <div
