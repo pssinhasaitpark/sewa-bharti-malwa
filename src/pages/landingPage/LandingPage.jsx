@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
 
-import './LandingPage.css'
+import "./LandingPage.css";
 import {
   Header,
   SliderSection,
@@ -9,6 +9,9 @@ import {
   AchievementsCard,
   GoalsCard,
   OpportunitiesCard,
+  Banner,
+  FlagShipComponent,
+  MemoriesSlider,
 } from "../../components/index"; // Adjust the path as necessary
 const HomeLayout = () => {
   return (
@@ -27,21 +30,41 @@ const HomeLayout = () => {
           </Col>
         </Row>
       </div>
-    <div className="mt-4 custom-width">
-  <Row className="justify-content-md-center">
-    <Col xs={12} md={4} className="mb-4">
-      <AchievementsCard />
-    </Col>
-    <Col xs={12} md={4} className="mb-4">
-      <GoalsCard />
-    </Col>
-    <Col xs={12} md={4} className="mb-4">
-      <OpportunitiesCard />
-    </Col>
-  </Row>
-</div>
-
-
+      <div className="mt-4 custom-width">
+        <Row className="justify-content-md-center">
+          <Col xs={12} md={4} className="mb-4">
+            <AchievementsCard />
+          </Col>
+          <Col xs={12} md={4} className="mb-4">
+            <GoalsCard />
+          </Col>
+          <Col xs={12} md={4} className="mb-4">
+            <OpportunitiesCard />
+          </Col>
+        </Row>
+      </div>
+      <div className=" custom-width my-4 ">
+        <Banner />
+      </div>
+      <Row className="custom-width">
+        <p>
+          What We
+          ARe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;____________
+        </p>
+      </Row>
+      <div className="custom-width my-4 ">
+        <FlagShipComponent />
+      </div>
+      <div className="custom-width my-4 ">
+        <Row>
+               <Col md={6} className="component component-1">
+                {/* <MemoriesSlider/> */}
+               </Col>
+               <Col md={6} className="component component-2">
+            
+               </Col>
+             </Row>
+      </div>
       <footer className="bg-dark text-white text-center py-3">
         <Container>
           <p>&copy; 2023 My Website. All rights reserved.</p>
