@@ -7,6 +7,11 @@ import OpportunitiesCard from "./cards/opportunitiesCard/OpportunitiesCard.jsx";
 import Banner from "./banner/Banner.jsx";
 import FlagShipComponent from "./flagShipComponent/FlagShipComponent.jsx";
 import MemoriesSlider from "./memoriesSliderComponent/MemoriesSlider.jsx";
+import EventsComponent from "./EventsComponent/EventsComponent.jsx";
+import EventsSliderComponent from "./EventsComponent/EventsSliderComponent.jsx";
+import Timeline from "./timeline/TimeLine.jsx";
+import MomentCaptured from "./momentCaptured/MomentCaptured.jsx";
+import Footer from "./footer/Footer.jsx";
 export {
   Header,
   SliderSection,
@@ -17,4 +22,9 @@ export {
   Banner,
   FlagShipComponent,
   MemoriesSlider,
+  EventsComponent,
+  EventsSliderComponent,
+  MomentCaptured,
+  Timeline,
+  Footer,
 };

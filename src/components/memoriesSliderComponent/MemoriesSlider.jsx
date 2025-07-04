@@ -1,41 +1,135 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Carousel, Badge } from 'react-bootstrap';
-import './MemoriesSlider.css'; // Assuming you have a CSS file for custom styles
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectFade, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-fade";
+import {
+  LeftSlide1,
+  LeftSlide2,
+  LeftSlide3,
+  BadgeImage,
+} from "../../assets/index"; // Adjust paths
+import { IoIosArrowRoundForward } from "react-icons/io";
 
-const ImageCarousel = () => {
+const textSlides = [
+  {
+    title: "Your Generosity Can Change Lives",
+    content:
+      "Every Contribution Helps Us Reach More Individuals And Communities In Need. Whether Big Or Small, Your Donation Fuels Education, Healthcare, Relief Efforts, And Sustainable Development Projects. Together, We Can Create Lasting Impact And Build A Brighter Future For Those Who Need It Most.\nJoin Us In Making A Difference—Because Every Act Of Kindness Counts.",
+  },
+  {
+    title: "Empowering Futures Through Education",
+    content:
+      "We Believe Education Is The Most Powerful Tool To Break The Cycle Of Poverty And Build Brighter Futures. Our Education Initiatives Focus On Providing Quality Learning Opportunities To Underprivileged Children And Youth. From Establishing Digital Classrooms And Providing School Supplies To Running After-School Programs And Skill Development Workshops, We Are Committed To Ensuring That Every Child Has The Chance To Learn, Grow, And Succeed.",
+  },
+  {
+    title: "Together For A Healthier Tomorrow",
+    content:
+      "Our Health Programs Provide Access To Essential Medical Services, Health Camps, Vaccination Drives, And Awareness Campaigns. We Are Committed To Promoting Better Health In Underserved Communities Through Prevention, Education, And Care.",
+  },
+];
+
+const imageSlides = [LeftSlide1, LeftSlide2, LeftSlide3];
+
+const Slideshow = () => {
   return (
-    <div style={{ position: 'relative' }}>
-      <Carousel>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://mistralaichatupprodswe.blob.core.windows.net/chat-images/34/98/ad/3498ad43-0a44-4bba-9f62-aca0eee5184a/5d08a88c-4532-4385-a47f-0533d6a5d614/33ec06da-900a-451d-9669-6935b68ef130?sv=2025-01-05&st=2025-07-03T13%3A20%3A30Z&se=2025-07-03T14%3A20%3A30Z&sr=b&sp=rade&sig=dZ4Yf89X%2BzPeFl%2BmK3SzJeIFZv8vDqrZlp2GEBBBen8%3D"
-            alt="First slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://example.com/path-to-your-second-image.jpg" // Replace with your image URL
-            alt="Second slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://example.com/path-to-your-third-image.jpg" // Replace with your image URL
-            alt="Third slide"
-          />
-        </Carousel.Item>
-      </Carousel>
-      <div style={{ position: 'absolute', bottom: '20px', right: '20px' }}>
-        <Badge pill bg="warning" text="dark" style={{ fontSize: '1.5rem', padding: '10px 20px' }}>
-          25+ YEARS Completed
-        </Badge>
+    <div style={{ position: "relative" }}>
+      <Swiper
+        effect="fade"
+        modules={[EffectFade, Autoplay]}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        loop={true}
+        slidesPerView={1} // This ensures only one slide is shown at a time
+      >
+        {imageSlides.map((img, index) => (
+          <SwiperSlide key={index}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "20px",
+                alignItems: "stretch",
+              }}
+            >
+              {/* Left Image Section */}
+              <div style={{ position: "relative", flex: 1 }}>
+                <img
+                  src={img}
+                  alt={`Slide ${index + 1}`}
+                  className="d-block w-100"
+                  style={{
+                    borderRadius: "12px",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                />
+              </div>
+              {/* Right Text Section */}
+              <div
+                style={{
+                  flex: 1,
+                  backgroundColor:
+                    index === 0
+                      ? "#D44C00"
+                      : index === 1
+                      ? "#10044D"
+                      : "#045D56",
+                  color: "white",
+                  borderRadius: "12px",
+                  padding: "30px 25px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+              >
+                <h3 style={{ fontWeight: "bold" }}>
+                  {textSlides[index].title}
+                </h3>
+                <p style={{ marginTop: "15px", whiteSpace: "pre-line" }}>
+                  {textSlides[index].content}
+                </p>
+                <p
+                  style={{
+                    marginTop: "auto",
+                    fontWeight: "bold",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "5px",
+                  }}
+                >
+                  Read More
+                  <span
+                    style={{
+                      fontSize: "2rem",
+                      display: "inline-flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <IoIosArrowRoundForward />
+                  </span>
+                </p>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      {/* Static Badge Overlay */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "20px",
+          left: "calc(33%)",
+          zIndex: 10,
+        }}
+      >
+        <img
+          src={BadgeImage}
+          alt="25+ Years Completed"
+          style={{ height: "50%" }}
+        />
       </div>
     </div>
   );
 };
 
-export default ImageCarousel;
+export default Slideshow;

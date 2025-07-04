@@ -12,7 +12,13 @@ import {
   Banner,
   FlagShipComponent,
   MemoriesSlider,
+  EventsComponent,
+  EventsSliderComponent,
+  MomentCaptured,
+  Footer,
+  Timeline,
 } from "../../components/index"; // Adjust the path as necessary
+import DescriptionSlider from "../../components/descriptionSlider/DescriptionSlider";
 const HomeLayout = () => {
   return (
     <div className="d-flex flex-column min-vh-100 ">
@@ -57,18 +63,34 @@ const HomeLayout = () => {
       </div>
       <div className="custom-width my-4 ">
         <Row>
-               <Col md={6} className="component component-1">
-                {/* <MemoriesSlider/> */}
-               </Col>
-               <Col md={6} className="component component-2">
-            
-               </Col>
-             </Row>
+          <MemoriesSlider />
+        </Row>
       </div>
-      <footer className="bg-dark text-white text-center py-3">
-        <Container>
-          <p>&copy; 2023 My Website. All rights reserved.</p>
-        </Container>
+      <div className="custom-width my-4">
+        <Timeline /> {/* Place the Timeline component here */}
+      </div>
+      <div className="custom-width my-4">
+        <Row>
+          <Col md={4} className="main-content p-0 m-0">
+            <EventsComponent />
+          </Col>
+
+          <Col md={8} className="sidebar m-0 p-0 ">
+            <EventsSliderComponent />
+          </Col>
+        </Row>
+      </div>
+      <Row className="custom-width">
+        <p>
+          What We
+          ARe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;____________
+        </p>
+      </Row>
+      <div className="custom-width my-4">
+        <MomentCaptured />
+      </div>
+      <footer className="mt-5">
+        <Footer />
       </footer>
     </div>
   );
