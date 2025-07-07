@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   Navbar,
   Nav,
@@ -12,8 +13,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import HeaderLogo from "../../assets/icons/HeaderLogo.svg";
 import { FaChevronDown } from "react-icons/fa";
 import "./Header.css";
+import { BiHome } from "react-icons/bi";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleDonateNowClick = () => {
+    navigate("/donation");
+  };
+
+  const handleHomeClick = () => {
+    navigate("/");
+  };
+
   return (
     <Navbar
       variant="light"
@@ -145,19 +158,42 @@ const Header = () => {
                 </Nav.Link>
               </Nav>
             </Col>
-            <Col xs={3} className="d-flex justify-content-end align-items-center">
-              <Button
-                variant="warning"
-                className="text-white"
-                style={{
-                  backgroundColor: "#FF5733",
-                  fontSize: "1.3em",
-                  padding: "12px 25px",
-                  border: "none",
-                }}
-              >
-                Donate Now
-              </Button>
+            <Col
+              xs={3}
+              className="d-flex justify-content-end align-items-center"
+            >
+              {location.pathname === "/donation" ? (
+                <Button
+                  variant="warning"
+                  className="text-white"
+                  style={{
+                    backgroundColor: "#FF5733",
+                    fontSize: "1.3em",
+                    padding: "12px 25px",
+                    border: "none",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                  onClick={handleHomeClick}
+                >
+                  <BiHome style={{ marginRight: "8px" }} />
+                  <span className="pt-1">Home</span>
+                </Button>
+              ) : (
+                <Button
+                  variant="warning"
+                  className="text-white"
+                  style={{
+                    backgroundColor: "#FF5733",
+                    fontSize: "1.3em",
+                    padding: "12px 25px",
+                    border: "none",
+                  }}
+                  onClick={handleDonateNowClick}
+                >
+                  Donate Now
+                </Button>
+              )}
             </Col>
           </Row>
         </Container>

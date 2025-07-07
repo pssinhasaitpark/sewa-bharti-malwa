@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LandingPage from './pages/landingPage/LandingPage';
+import { LandingPage, DonationPage } from './pages/index';
 // import HomeChatBox from './Views/Components/HomeChatBox/HomeChatBox';
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/donation" element={<DonationPage />} />
           {/* <Route path="/chat" element={<HomeChatBox />} /> */}
         </Routes>
       </div>

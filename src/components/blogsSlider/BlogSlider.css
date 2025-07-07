@@ -1,0 +1,37 @@
+.btn-warning {
+  background-color: #ff6b35;
+  border-color: #ff6b35;
+}
+
+.btn-warning:hover {
+  background-color: #e55a2e;
+  border-color: #e55a2e;
+}
+
+.display-4 {
+  font-size: 2.5rem;
+}
+.button-left-slider {
+  margin-left: -7rem;
+  background-color: #011659;
+}
+.button-right-slider {
+  margin-right: -7rem;
+  background-color: #011659;
+}
+@media (max-width: 768px) {
+  .display-4 {
+    font-size: 2rem;
+  }
+
+  .position-absolute.start-0,
+  .position-absolute.end-0 {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    margin: 20px 10px 0 10px;
+    display: inline-block;
+  }
+}

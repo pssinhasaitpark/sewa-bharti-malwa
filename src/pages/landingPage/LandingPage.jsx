@@ -17,6 +17,7 @@ import {
   MomentCaptured,
   Footer,
   Timeline,
+  BlogSlider,
 } from "../../components/index"; // Adjust the path as necessary
 import DescriptionSlider from "../../components/descriptionSlider/DescriptionSlider";
 const HomeLayout = () => {
@@ -88,6 +89,9 @@ const HomeLayout = () => {
       </Row>
       <div className="custom-width my-4">
         <MomentCaptured />
+      </div>
+      <div className="custom-width my-4">
+        <BlogSlider />
       </div>
       <footer className="mt-5">
         <Footer />
