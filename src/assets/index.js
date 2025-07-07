@@ -24,6 +24,15 @@ import MaskGroup3 from "./icons/MaskGroup3.svg";
 import MaskGroup4 from "./icons/MaskGroup4.svg";
 import MaskGroup5 from "./icons/MaskGroup5.svg";
 import MaskGroup6 from "./icons/MaskGroup6.svg";
+import BlogImg1 from "./icons/BlogImg1.svg";
+import BlogImg2 from "./icons/BlogImg2.svg";
+import BlogImg3 from "./icons/BlogImg3.svg";
+import BlogImg4 from "./icons/BlogImg4.svg";
+import BlogImg5 from "./icons/BlogImg5.svg";
+import BlogImg6 from "./icons/BlogImg6.svg";
+import DonationHeroImg from "./icons/DonationHeroImg.svg";
+import Polygon1 from "./icons/Polygon1.svg";
+import Polygon2 from "./icons/Polygon2.svg";
 export {
   HeaderLogo,
   sliderLeftimg1,
@@ -51,4 +60,13 @@ export {
   MaskGroup4,
   MaskGroup5,
   MaskGroup6,
+  BlogImg1,
+  BlogImg2,
+  BlogImg3,
+  BlogImg4,
+  BlogImg5,
+  BlogImg6,
+  DonationHeroImg,
+  Polygon1,
+  Polygon2
 };

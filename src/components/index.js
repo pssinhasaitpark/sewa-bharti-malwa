@@ -11,7 +11,11 @@ import EventsComponent from "./EventsComponent/EventsComponent.jsx";
 import EventsSliderComponent from "./EventsComponent/EventsSliderComponent.jsx";
 import Timeline from "./timeline/TimeLine.jsx";
 import MomentCaptured from "./momentCaptured/MomentCaptured.jsx";
+import BlogSlider from "./blogsSlider/BlogSlider.jsx";
 import Footer from "./footer/Footer.jsx";
+
+import DonationBanner from "./donateHeroSection/DonateHeroSection.jsx";
+import DonationForm from "./donationForm/DonationForm.jsx";
 export {
   Header,
   SliderSection,
@@ -26,5 +30,8 @@ export {
   EventsSliderComponent,
   MomentCaptured,
   Timeline,
+  BlogSlider,
   Footer,
+  DonationBanner,
+  DonationForm
 };

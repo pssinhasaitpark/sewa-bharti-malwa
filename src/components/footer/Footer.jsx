@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FaWhatsapp } from "react-icons/fa";
 import { RiFacebookCircleLine } from "react-icons/ri";
 import { FiInstagram, FiYoutube } from "react-icons/fi";
+import { Polygon1, Polygon2 } from "../../assets/index.js";
 
 const Footer = () => {
   const [subscribed, setSubscribed] = useState(false);
@@ -57,21 +58,25 @@ const Footer = () => {
     <>
       <footer className="footer-container">
         <div className="angled-section container position-absolute end-50 start-50 translate-middle ">
-          <div className="angled-content p-4">
-            <h1 className="main-title text-light fw-bolder fs-1">
-              Building A Stronger India
-            </h1>
-            <div className="phone-container">
-              <span className="phone-icon">📞</span>
-              <span className="phone-number">999-222-3334</span>
+          <div className="d-flex">
+            <img src={Polygon2} style={{ height: "53px" }} alt="" />
+            <div className="angled-content p-4">
+              <h1 className="main-title text-light fw-bolder fs-1">
+                Building A Stronger India
+              </h1>
+              <div className="phone-container">
+                <span className="phone-icon">📞</span>
+                <span className="phone-number">999-222-3334</span>
+              </div>
             </div>
+            <img src={Polygon1} style={{ height: "53px" }} alt="" />
           </div>
         </div>
         <div className="footer bg-dark text-light py-5">
           <div className="p-0 m-0 mt-5">
             <div className="row m-0 mb-5">
               <div className="col-md-4 footer-section w-25 ms-5 mt-2 p-0 mx-0 ">
-                <span className=" badge-ambedkar badge bg-success mb-3 mt-5 fs-6">
+                <span className="badge p-2 font-monospace mb-3 custom-badge">
                   Sewa Bharti Malwa
                 </span>
                 <h2 className="mb-4  mt-2 fs-1 fw-bold lh-base">
