@@ -26,18 +26,17 @@ const HomeLayout = () => {
       <div>
         <Header />
       </div>
-      <div className="container-fluid ml-0 flex-grow-1">
+      <div className="container-fluid ml-0 flex-grow-1 mb-5 pb-5 pb-lg-0  ">
         <Row>
           <Col md={8} className="main-content p-0 m-0">
             <SliderSection />
           </Col>
-
-          <Col md={4} className="sidebar m-0 p-0 ">
+          <Col md={4} className="sidebar m-0 p-0">
             <SliderRight />
           </Col>
         </Row>
       </div>
-      <div className="mt-4 custom-width">
+      <div className="mt-4 pt-5 pt-lg-0 custom-width">
         <Row className="justify-content-md-center">
           <Col xs={12} md={4} className="mb-4">
             <AchievementsCard />
@@ -50,6 +49,7 @@ const HomeLayout = () => {
           </Col>
         </Row>
       </div>
+
       <div className=" custom-width my-4 ">
         <Banner />
       </div>

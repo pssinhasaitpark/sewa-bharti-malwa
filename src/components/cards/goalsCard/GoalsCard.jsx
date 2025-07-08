@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { GoalsIcon } from "../../../assets";
 import "./GoalsCard.css";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { GoalCardModel } from "../../index"; // Adjust the import path as needed
 
 const goals = [
   {
@@ -41,9 +42,32 @@ const goals = [
 ];
 
 const GoalsCard = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedGoal, setSelectedGoal] = useState(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showModal && !event.target.closest(".modal-content")) {
+        setShowModal(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showModal]);
+
+  const handleGoalClick = (goal) => {
+    setSelectedGoal(goal);
+    setShowModal(true);
+  };
+
+  const handleClose = () => setShowModal(false);
+
   return (
     <Card
-      className="goals-card"
+      className="goals-card custom-card"
       style={{
         border: "none",
         borderRadius: "10px",
@@ -71,13 +95,13 @@ const GoalsCard = () => {
               idx !== goals.length - 1 ? " with-border" : ""
             }`}
             key={goal.text}
+            onClick={() => handleGoalClick(goal)}
           >
             <div className="goal-text-bar-wrapper">
               <div className="d-flex align-items-center goal-text-row">
                 <FaArrowRightLong className="arrow" />
                 <span className="goal-text">{goal.text}</span>
               </div>
-              {/* Always show the thin segmented line */}
               <div className="segmented-progress-line">
                 {goal.segments.map((seg, i) => (
                   <div
@@ -87,7 +111,6 @@ const GoalsCard = () => {
                   ></div>
                 ))}
               </div>
-              {/* Overlay expands from bottom to top on hover */}
               <div className="segmented-progress-overlay">
                 {goal.segments.map((seg, i) => (
                   <div
@@ -109,6 +132,8 @@ const GoalsCard = () => {
           </div>
         ))}
       </Card.Body>
+
+      <GoalCardModel showModal={showModal} handleClose={handleClose} />
     </Card>
   );
 };

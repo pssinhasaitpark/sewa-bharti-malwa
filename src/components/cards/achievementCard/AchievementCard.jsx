@@ -7,7 +7,7 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 
 const AchievementsCard = () => {
   return (
-    <Card
+    <Card className="custom-card"
       style={{
         border: "none",
         borderRadius: "10px",
@@ -29,7 +29,7 @@ const AchievementsCard = () => {
       <Card.Body>
         <div className="d-flex justify-content-between align-items-start mb-1">
           <Card.Title
-            className="fw-bolder fs-3 mt-3 "
+            className="fw-bolder fs-3 mt-3 custom-title"
             style={{
               color: "#0BB72B",
               paddingBottom: "10px",
