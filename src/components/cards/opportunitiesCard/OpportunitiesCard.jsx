@@ -8,6 +8,7 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 const OpportunitiesCard = () => {
   return (
     <Card
+      className="custom-card"
       style={{
         border: "none",
         borderRadius: "10px",
@@ -30,7 +31,7 @@ const OpportunitiesCard = () => {
       <Card.Body className="mt-3">
         <div className="d-flex justify-content-between align-items-start mb-3">
           <Card.Title
-            className="fw-bolder fs-3 mt-1 "
+            className="fw-bolder fs-3 mt-1 custom-title "
             style={{
               color: "#3353F6",
               paddingBottom: "10px",

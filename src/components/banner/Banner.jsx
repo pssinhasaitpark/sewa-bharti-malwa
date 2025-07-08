@@ -3,7 +3,8 @@ import "./Banner.css"; // Import the CSS file
 
 const AboutUs = () => {
   return (
-    <div className="about-us-container p-5">
+    <div className="about-us-container p-5" style={{ boxShadow: '0px 0px 4px 0px #00000040' }}>
+
       <div className="row justify-content-center">
         <div className="col-md-8 text-center">
           <h2 className="about-us-subtitle">About Us</h2>

@@ -16,6 +16,8 @@ import Footer from "./footer/Footer.jsx";
 
 import DonationBanner from "./donateHeroSection/DonateHeroSection.jsx";
 import DonationForm from "./donationForm/DonationForm.jsx";
+
+import GoalCardModel from "./model/GoalCardModel.jsx";
 export {
   Header,
   SliderSection,
@@ -33,5 +35,6 @@ export {
   BlogSlider,
   Footer,
   DonationBanner,
-  DonationForm
+  DonationForm,
+  GoalCardModel
 };

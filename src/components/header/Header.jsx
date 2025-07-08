@@ -47,7 +47,7 @@ const Header = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Container fluid>
           <Row className="w-100">
-            <Col xs={9} className="d-flex align-items-center">
+            <Col xs={12} lg={9} className="d-flex align-items-center">
               <Nav className="mx-auto">
                 <Nav.Link href="#home" className="mx-2 fs-6 text-dark">
                   Home
@@ -158,10 +158,9 @@ const Header = () => {
                 </Nav.Link>
               </Nav>
             </Col>
-            <Col
-              xs={3}
-              className="d-flex justify-content-end align-items-center"
-            >
+
+            {/* Donate Now Button Section */}
+            <Col xs={12} lg={3} className="d-flex justify-content-end align-items-center flex-column">
               {location.pathname === "/donation" ? (
                 <Button
                   variant="warning"
@@ -173,6 +172,7 @@ const Header = () => {
                     border: "none",
                     display: "flex",
                     alignItems: "center",
+                    marginTop: "auto",  // Pushes button to bottom in mobile view
                   }}
                   onClick={handleHomeClick}
                 >
@@ -188,6 +188,7 @@ const Header = () => {
                     fontSize: "1.3em",
                     padding: "12px 25px",
                     border: "none",
+                    marginTop: "auto",  // Pushes button to bottom in mobile view
                   }}
                   onClick={handleDonateNowClick}
                 >

@@ -2,3 +2,8 @@
   width: 90%; /* or whatever width you want */
   margin: 0 auto; /* center it */
 }
+@media (max-width: 1700px) {
+  .hide-below-1700 {
+    display: none !important;
+  }
+}

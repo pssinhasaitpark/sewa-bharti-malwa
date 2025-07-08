@@ -43,16 +43,9 @@ const Slideshow = () => {
       >
         {imageSlides.map((img, index) => (
           <SwiperSlide key={index}>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                gap: "20px",
-                alignItems: "stretch",
-              }}
-            >
+            <div className="row" style={{ gap: "20px", alignItems: "stretch" }}>
               {/* Left Image Section */}
-              <div style={{ position: "relative", flex: 1 }}>
+              <div className="col" style={{ position: "relative" }}>
                 <img
                   src={img}
                   alt={`Slide ${index + 1}`}
@@ -66,8 +59,8 @@ const Slideshow = () => {
               </div>
               {/* Right Text Section */}
               <div
+                className="col-sm-6 "
                 style={{
-                  flex: 1,
                   backgroundColor:
                     index === 0
                       ? "#D44C00"

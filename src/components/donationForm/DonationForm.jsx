@@ -57,7 +57,7 @@ function DonationForm() {
                   position: "absolute",
                   marginLeft: "-1.5%",
                   border: "2px solid #ffffff",
-                  backgroundColor: "rgb(180, 75, 6)",
+                  backgroundColor: "#F35500",
                 }}
               >
                 1
@@ -65,7 +65,7 @@ function DonationForm() {
               <div
                 className=" text-white px-5 py-2 rounded"
                 style={{
-                  backgroundColor: "#B44B06",
+                  backgroundColor: "#F35500",
                 }}
               >
                 <div className="fs-4 font-weight-bold">
@@ -78,7 +78,7 @@ function DonationForm() {
               style={{
                 height: "2px",
                 width: "40px",
-                backgroundColor: "#D1874E",
+                backgroundColor: "#FB8241",
               }}
             ></div>
             <div className="d-flex align-items-center">
@@ -90,7 +90,7 @@ function DonationForm() {
                   position: "absolute",
                   marginLeft: "-1.5%",
                   border: "2px solid #ffffff",
-                  backgroundColor: "rgb(180, 75, 6)",
+                  backgroundColor: "#FB8241",
                 }}
               >
                 2
@@ -98,7 +98,7 @@ function DonationForm() {
               <div
                 className=" text-white px-5 py-2 rounded"
                 style={{
-                  backgroundColor: "#B44B06",
+                  backgroundColor: "#FB8241",
                 }}
               >
                 <div className="fs-4 font-weight-bold">
@@ -123,7 +123,7 @@ function DonationForm() {
                   position: "absolute",
                   marginLeft: "-1.5%",
                   border: "2px solid #ffffff",
-                  backgroundColor: "rgb(180, 75, 6)",
+                  backgroundColor: "#FB8241",
                 }}
               >
                 3
@@ -131,7 +131,7 @@ function DonationForm() {
               <div
                 className=" text-white rounded px-5"
                 style={{
-                  backgroundColor: "#B44B06",
+                  backgroundColor: "#FB8241",
                   padding: "26px",
                 }}
               >
@@ -202,8 +202,8 @@ function DonationForm() {
                           className="w-100 p-3 rounded-0"
                           style={{
                             backgroundColor:
-                              selectedAmount === amount ? "#007bff" : "#6c757d",
-                            color: "white",
+                              selectedAmount === amount ? "#007bff" : "#CACACA",
+                            color: "#000000",
                             border: "none",
                           }}
                         >
@@ -268,7 +268,7 @@ function DonationForm() {
               >
                 <Card.Header
                   className="text-dark"
-                  style={{ backgroundColor: "#F69866", border: "none" }}
+                  style={{ backgroundColor: "#FB8241", border: "none" }}
                 >
                   <h5 className="mb-0 fs-4 fw-medium">Personal Detail</h5>
                 </Card.Header>
