@@ -71,8 +71,8 @@ const Gallery = () => {
     <Container className="my-5">
       <h2 className="text-center mb-4">Our Gallery (2024-2025)</h2>
       <p className="text-center mb-5">
-        Explore our journey through the years. Click on any one image to view it in
-        full size.
+        Explore our journey through the years. Click on any one image to view it
+        in full size.
       </p>
 
       <Row className="g-4">
