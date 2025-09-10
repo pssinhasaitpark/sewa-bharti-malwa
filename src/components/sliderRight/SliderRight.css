@@ -1,16 +1,21 @@
-/* MyCarousel.css */
+/* Base Styles (unchanged from you, with minor cleanup) */
 .carousel {
-  height: 500px; /* Set a fixed height for the carousel */
+  height: 500px;
 }
 
 .carousel-item {
-  height: 100%; 
-  padding: 10px;/* Ensure carousel items take the full height of the carousel */
+  height: 100%;
+  padding: 10px;
+  transition: transform 2s ease-in-out;
+  border: 1px solid #d3d3d3;
+  box-sizing: border-box;
 }
 
 .carousel-item img {
-  height: 300px; /* Set a fixed height for the images */
-  object-fit: cover; /* Ensure images cover the area without distortion */
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .carousel-caption {
@@ -19,12 +24,13 @@
   background-color: #f8f9fa;
   text-align: left;
   color: black;
-  height: 326px; /* Set a fixed height for the caption area */
+  height: 326px;
   overflow-y: auto;
+  border-radius: 8px;
 }
 
 .btn-read-more {
-  width: 180.33px;
+  width: 180px;
   height: 45px;
   border-radius: 5px;
   background-color: #f15700;
@@ -35,19 +41,65 @@
   margin-top: 10px;
 }
 
-/* Optional hover effect */
 .btn-read-more:hover {
   background-color: #d44c00;
 }
 
-/* Custom CSS to control the transition speed */
-.carousel-item {
-  transition: transform 2s ease-in-out;
-  border: 1px solid #d3d3d3;
-  box-sizing: border-box;
+.carousel-indicators {
+  display: none;
 }
 
-.carousel-indicators
-{
-  display: none;
+/* ✅ Responsive Styling: Screens between 1000px and 545px */
+@media (max-width: 1000px) and (min-width: 545px) {
+  .carousel {
+    height: auto;
+  }
+
+  .carousel-item img {
+    height: 200px;
+  }
+
+  .carousel-caption {
+    padding: 15px;
+    height: auto;
+  }
+
+  .carousel-caption h3 {
+    font-size: 1.2rem;
+  }
+
+  .carousel-caption p {
+    font-size: 0.85rem;
+  }
+
+  .btn-read-more {
+    width: 140px;
+    height: 38px;
+    font-size: 0.85rem;
+  }
+}
+
+/* ✅ Small screens below 545px */
+@media (max-width: 544px) {
+  .carousel-item img {
+    height: 180px;
+  }
+
+  .carousel-caption {
+    padding: 12px;
+  }
+
+  .carousel-caption h3 {
+    font-size: 1rem;
+  }
+
+  .carousel-caption p {
+    font-size: 0.8rem;
+  }
+
+  .btn-read-more {
+    width: 130px;
+    height: 36px;
+    font-size: 0.8rem;
+  }
 }

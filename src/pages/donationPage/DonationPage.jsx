@@ -3,19 +3,14 @@ import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
 
 import "../landingPage/LandingPage.css";
 import {
-  Header,
-  Footer,
   DonationBanner,
   BlogSlider,
   DonationForm,
-} from "../../components/index"; // Adjust the path as necessary
+} from "../../components/index";
 
 const DonationPage = () => {
   return (
     <div className="d-flex flex-column min-vh-100 ">
-      <div>
-        <Header />
-      </div>
       <Row className="custom-width my-4">
         <DonationBanner />
       </Row>
@@ -49,9 +44,6 @@ const DonationPage = () => {
         country. <br></br>✅ Avail Taxb Exemption Under Section 80G <br></br>
         📢 Every Rupee Counts! Your kindness can change lives.<br></br>
       </div>
-      <footer className="mt-5">
-        <Footer />
-      </footer>
     </div>
   );
 };
