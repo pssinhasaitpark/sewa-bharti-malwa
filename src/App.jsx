@@ -31,43 +31,40 @@
 
 // export default App;
 
-// src/App.jsx
-import { useRef, lazy, Suspense } from "react";
+import { useRef } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  LandingPage,
+  DonationPage,
+  CurrentProject,
+  PastProject,
+} from "./pages/index";
 import Layout from "./components/layout/Layout";
-import Loader from "./components/Loader/Loader";
-
-const LandingPage = lazy(() => import("./pages/landingPage/LandingPage"));
-const DonationPage = lazy(() => import("./pages/donationPage/DonationPage"));
-const CurrentProject = lazy(() => import("./pages/currentProject/CurrentProject"));
-const PastProject = lazy(() => import("./pages/pastProject/PastProject"));
-const BlogDetail = lazy(() => import("./pages/BlogDetail/BlogDetail"));
-const Gallery = lazy(() => import("./pages/GalleryPage/GalleryPage"));
+import BlogDetail from "./pages/BlogDetail/BlogDetail";
+import Gallery from "./pages/GalleryPage/GalleryPage"; // Import the Gallery page
 
 function App() {
   const blogSliderRef = useRef(null);
   return (
     <Router>
       <div className="App">
-        <Suspense fallback={<Loader />}>
-          <Layout blogSliderRef={blogSliderRef}>
-            <Routes>
-              <Route
-                path="/"
-                element={<LandingPage blogSliderRef={blogSliderRef} />}
-              />
-              <Route path="/donation" element={<DonationPage />} />
-              <Route path="/current-projects" element={<CurrentProject />} />
-              <Route path="/blog/:id" element={<BlogDetail />} />
-              <Route path="/past-projects" element={<PastProject />} />
-              <Route path="/gallery" element={<Gallery />} />
-            </Routes>
-          </Layout>
-        </Suspense>
+        <Layout blogSliderRef={blogSliderRef}>
+          <Routes>
+            <Route
+              path="/"
+              element={<LandingPage blogSliderRef={blogSliderRef} />}
+            />
+            <Route path="/donation" element={<DonationPage />} />
+            <Route path="/current-projects" element={<CurrentProject />} />
+            <Route path="/blog/:id" element={<BlogDetail />} />
+            <Route path="/past-projects" element={<PastProject />} />
+            <Route path="/gallery" element={<Gallery />} />{" "}
+            {/* Add Gallery route */}
+          </Routes>
+        </Layout>
       </div>
     </Router>
   );
 }
-
 export default App;
