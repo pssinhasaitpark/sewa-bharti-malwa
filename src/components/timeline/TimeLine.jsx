@@ -81,7 +81,7 @@ const Timeline = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="hero-section">
+      <section className="hero-section1">
         <div className="container">
           <div className="row">
             <div className="col-12 text-center">

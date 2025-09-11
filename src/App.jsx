@@ -1,70 +1,48 @@
-// import "./App.css";
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import {
-//   LandingPage,
-//   DonationPage,
-//   CurrentProject,
-//   PastProject,
-// } from "./pages/index";
-// import Layout from "./components/layout/Layout";
-// import BlogDetail from "./pages/BlogDetail/BlogDetail";
-// // import HomeChatBox from './Views/Components/HomeChatBox/HomeChatBox';
-
-// function App() {
-//   return (
-//     <Router>
-//       <div className="App">
-//         <Layout>
-//           <Routes>
-//             <Route path="/" element={<LandingPage />} />
-//             <Route path="/donation" element={<DonationPage />} />
-//             <Route path="/current-projects" element={<CurrentProject />} />
-//             <Route path="/blog/:id" element={<BlogDetail />} />
-//             <Route path="/past-projects" element={<PastProject />} />
-//             {/* <Route path="/chat" element={<HomeChatBox />} />*/}
-//           </Routes>
-//         </Layout>
-//       </div>
-//     </Router>
-//   );
-// }
-
-// export default App;
-
+// src/App.js
 import { useRef } from "react";
-import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   LandingPage,
   DonationPage,
   CurrentProject,
-  PastProject,
+  UpcomingProject,
+  AboutPage,
+  WarriorsPage, // Import the new page
 } from "./pages/index";
 import Layout from "./components/layout/Layout";
 import BlogDetail from "./pages/BlogDetail/BlogDetail";
-import Gallery from "./pages/GalleryPage/GalleryPage"; // Import the Gallery page
+import Gallery from "./pages/GalleryPage/GalleryPage";
 
 function App() {
   const blogSliderRef = useRef(null);
+  const partnersRef = useRef(null);
+
   return (
     <Router>
       <div className="App">
-        <Layout blogSliderRef={blogSliderRef}>
+        <Layout blogSliderRef={blogSliderRef} partnersRef={partnersRef}>
           <Routes>
             <Route
               path="/"
-              element={<LandingPage blogSliderRef={blogSliderRef} />}
+              element={
+                <LandingPage
+                  blogSliderRef={blogSliderRef}
+                  partnersRef={partnersRef}
+                />
+              }
             />
             <Route path="/donation" element={<DonationPage />} />
             <Route path="/current-projects" element={<CurrentProject />} />
             <Route path="/blog/:id" element={<BlogDetail />} />
-            <Route path="/past-projects" element={<PastProject />} />
-            <Route path="/gallery" element={<Gallery />} />{" "}
-            {/* Add Gallery route */}
+            <Route path="/upcoming-projects" element={<UpcomingProject />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/aboutus" element={<AboutPage />} />
+            <Route path="/our-warriors" element={<WarriorsPage />} /> {/* New route */}
           </Routes>
         </Layout>
       </div>
     </Router>
   );
 }
+
 export default App;

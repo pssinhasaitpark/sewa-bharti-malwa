@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container, Row, Col, Card, Badge, Button } from 'react-bootstrap';
 import { FaCalendarAlt, FaMapMarkerAlt, FaUsers, FaArrowRight, FaHistory, FaEye } from 'react-icons/fa';
-import './PastProject.css';
+import './UpcomingProject.css';
 
-const PastProject = () => {
-  const pastProjects = [
+const upcomingProject = () => {
+  const upcomingProjects = [
     {
       id: 1,
       title: "Winter Clothing Drive 2023",
@@ -63,7 +63,7 @@ const PastProject = () => {
     {
       id: 3,
       title: "Award for Social Service Excellence",
-      excerpt: "Seva Bharti Malwa received regional recognition for outstanding contribution to community service.",
+      excerpt: "Sewa Bharti Malwa received regional recognition for outstanding contribution to community service.",
       date: "October 10, 2023",
       views: 980,
       image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=300&h=200&fit=crop"
@@ -80,12 +80,12 @@ const PastProject = () => {
   };
 
   return (
-    <div className="past-project-page">
-      <div className="hero-section past-hero">
+    <div className="upcoming-project-page">
+      <div className="hero-section upcoming-hero">
         <Container>
           <Row className="justify-content-center text-center">
             <Col lg={8}>
-              <h1 className="hero-title">Past Projects</h1>
+              <h1 className="hero-title">upcoming Projects</h1>
               <p className="hero-subtitle">
                 A showcase of our completed initiatives and the lasting impact created through collective effort and compassion.
               </p>
@@ -103,7 +103,7 @@ const PastProject = () => {
             </div>
 
             <div className="projects-grid">
-              {pastProjects.map((project) => (
+              {upcomingProjects.map((project) => (
                 <Card key={project.id} className="project-card">
                   <div className="card-image-container">
                     <Card.Img variant="top" src={project.image} className="project-image" />
@@ -192,5 +192,5 @@ const PastProject = () => {
   );
 };
 
-export default PastProject;
+export default upcomingProject;
 
