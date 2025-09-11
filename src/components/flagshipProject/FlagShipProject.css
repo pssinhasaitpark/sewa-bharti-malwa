@@ -1,0 +1,222 @@
+/* Flagship Projects Component */
+.flagship-wrapper {
+  position: relative;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.flagship-swiper {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+.flagship-slide {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: stretch;
+  min-height: 400px;
+}
+
+.flagship-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+}
+
+.flagship-image img {
+  width: 100%;
+  height: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Badge overlay */
+.flagship-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  z-index: 10;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+}
+
+.flagship-badge img {
+  height: clamp(60px, 6vw, 100px);
+  width: auto;
+  max-height: none;
+}
+
+.flagship-text {
+  color: white;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 0 0 20px 20px;
+  position: relative;
+}
+
+.flagship-text::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.3) 100%);
+}
+
+.flagship-title {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.flagship-desc {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  opacity: 0.95;
+}
+
+.flagship-cta {
+  background-color: white;
+  color: #333 !important;
+  text-decoration: none !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  align-self: flex-start;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.flagship-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  color: #333 !important;
+}
+
+/* Pagination */
+.flagship-swiper .swiper-pagination {
+  bottom: 1.5rem !important;
+}
+
+.flagship-swiper .swiper-pagination-bullet {
+  width: 12px !important;
+  height: 12px !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  opacity: 0.8 !important;
+  margin: 0 8px !important;
+  transition: all 0.3s ease !important;
+}
+
+.flagship-swiper .swiper-pagination-bullet-active {
+  background: #FF5733 !important;
+  opacity: 1 !important;
+  transform: scale(1.2);
+}
+
+/* Responsive: Small devices (576px and up) */
+@media (min-width: 576px) {
+  .flagship-wrapper {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .flagship-image img {
+    max-height: 350px;
+  }
+  
+  .flagship-text {
+    padding: 2.5rem 2rem;
+  }
+  
+  .flagship-badge {
+    bottom: 20px;
+    left: 20px;
+  }
+}
+
+/* Responsive: Medium devices (768px and up) */
+@media (min-width: 768px) {
+  .flagship-slide {
+    grid-template-columns: 1fr 1fr;
+    min-height: 450px;
+  }
+  
+  .flagship-image {
+    border-radius: 20px 0 0 20px;
+  }
+  
+  .flagship-image img {
+    max-height: 450px;
+  }
+  
+  .flagship-text {
+    border-radius: 0 20px 20px 0;
+    padding: 3rem 2.5rem;
+  }
+  
+  .flagship-text::after {
+    height: 5px;
+  }
+  
+  .flagship-badge {
+    bottom: 24px;
+    left: 24px;
+  }
+}
+
+/* Responsive: Large devices (992px and up) */
+@media (min-width: 992px) {
+  .flagship-wrapper {
+    padding: 3rem 2rem;
+  }
+  
+  .flagship-slide {
+    min-height: 500px;
+  }
+  
+  .flagship-image img {
+    max-height: 500px;
+  }
+  
+  .flagship-text {
+    padding: 4rem 3rem;
+  }
+  
+  .flagship-badge {
+    bottom: 28px;
+    left: 28px;
+  }
+}
+
+/* Responsive: Extra large devices (1200px and up) */
+@media (min-width: 1200px) {
+  .flagship-wrapper {
+    padding: 3.5rem 3rem;
+  }
+  
+  .flagship-slide {
+    min-height: 520px;
+  }
+  
+  .flagship-image img {
+    max-height: 520px;
+  }
+  
+  .flagship-text {
+    padding: 4.5rem 3.5rem;
+  }
+  
+  .flagship-badge {
+    bottom: 32px;
+    left: 32px;
+  }
+}

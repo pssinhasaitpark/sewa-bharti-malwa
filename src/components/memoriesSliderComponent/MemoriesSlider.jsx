@@ -1,8 +1,8 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectFade, Autoplay } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/effect-fade";
+import "swiper/css/pagination";
 import {
   LeftSlide1,
   LeftSlide2,
@@ -10,6 +10,7 @@ import {
   BadgeImage,
 } from "../../assets/index"; // Adjust paths
 import { IoIosArrowRoundForward } from "react-icons/io";
+import "./MemoriesSlider.css";
 
 const textSlides = [
   {
@@ -33,33 +34,40 @@ const imageSlides = [LeftSlide1, LeftSlide2, LeftSlide3];
 
 const Slideshow = () => {
   return (
-    <div style={{ position: "relative" }}>
+    <div className="memories-slider-container">
       <Swiper
-        effect="fade"
-        modules={[EffectFade, Autoplay]}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        modules={[Autoplay, Pagination]}
+        autoplay={{ delay: 3500, disableOnInteraction: false }}
         loop={true}
-        slidesPerView={1} // This ensures only one slide is shown at a time
+        slidesPerView={1}
+        spaceBetween={0}
+        pagination={{ clickable: true }}
+        autoHeight={true}
+        className="memories-swiper"
       >
         {imageSlides.map((img, index) => (
           <SwiperSlide key={index}>
-            <div className="row" style={{ gap: "20px", alignItems: "stretch" }}>
-              {/* Left Image Section */}
-              <div className="col" style={{ position: "relative" }}>
+<div className="slide-content">
+              {/* Image Section */}
+              <div className="image-section">
+                <div className="image-overlay"></div>
                 <img
                   src={img}
                   alt={`Slide ${index + 1}`}
-                  className="d-block w-100"
-                  style={{
-                    borderRadius: "12px",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
+                  className="slide-image"
                 />
+                {/* Badge overlay inside image for precise placement */}
+                <div className="badge-overlay">
+                  <img
+                    src={BadgeImage}
+                    alt="25+ Years Completed"
+                    className="badge-image"
+                  />
+                </div>
               </div>
-              {/* Right Text Section */}
+              {/* Text Section */}
               <div
-                className="col-sm-6 "
+                className={`text-section slide-${index}`}
                 style={{
                   backgroundColor:
                     index === 0
@@ -67,60 +75,25 @@ const Slideshow = () => {
                       : index === 1
                       ? "#10044D"
                       : "#045D56",
-                  color: "white",
-                  borderRadius: "12px",
-                  padding: "30px 25px",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
                 }}
               >
-                <h3 style={{ fontWeight: "bold" }}>
+                <h3 className="slide-title">
                   {textSlides[index].title}
                 </h3>
-                <p style={{ marginTop: "15px", whiteSpace: "pre-line" }}>
+                <p className="slide-text">
                   {textSlides[index].content}
                 </p>
-                <p
-                  style={{
-                    marginTop: "auto",
-                    fontWeight: "bold",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "5px",
-                  }}
-                >
-                  Read More
-                  <span
-                    style={{
-                      fontSize: "2rem",
-                      display: "inline-flex",
-                      alignItems: "center",
-                    }}
-                  >
+                <a href="#more" className="slide-read-more cta-btn">
+                  <span className="read-more-text">Read More</span>
+                  <span className="read-more-arrow">
                     <IoIosArrowRoundForward />
                   </span>
-                </p>
+                </a>
               </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-      {/* Static Badge Overlay */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: "20px",
-          left: "calc(33%)",
-          zIndex: 10,
-        }}
-      >
-        <img
-          src={BadgeImage}
-          alt="25+ Years Completed"
-          style={{ height: "50%" }}
-        />
-      </div>
     </div>
   );
 };

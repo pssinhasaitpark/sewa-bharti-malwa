@@ -16,6 +16,7 @@ import Footer from "./footer/Footer.jsx";
 
 import DonationBanner from "./donateHeroSection/DonateHeroSection.jsx";
 import DonationForm from "./donationForm/DonationForm.jsx";
+import FlagShipProject from "./flagshipProject/FlagShipProject.jsx";
 
 import GoalCardModel from "./model/GoalCardModel.jsx";
 export {
@@ -36,5 +37,6 @@ export {
   Footer,
   DonationBanner,
   DonationForm,
+  FlagShipProject,
   GoalCardModel
 };

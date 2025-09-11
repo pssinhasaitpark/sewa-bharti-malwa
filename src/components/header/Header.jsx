@@ -1,204 +1,426 @@
-import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Button,
-  Container,
-  Row,
-  Col,
-} from "react-bootstrap";
+// import React, { useState } from "react";
+// import { useNavigate, useLocation } from "react-router-dom";
+// import { Navbar, Nav, NavDropdown, Button, Container } from "react-bootstrap";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import HeaderLogo from "../../assets/icons/HeaderLogo.svg";
+// import { BiHome } from "react-icons/bi";
+// import { FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
+// import "./Header.css";
+
+// const Header = () => {
+//   const navigate = useNavigate();
+//   const location = useLocation();
+//   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+//   const handleDonateNowClick = () => {
+//     navigate("/donation");
+//     setIsMenuOpen(false);
+//   };
+
+//   const handleHomeClick = () => {
+//     navigate("/");
+//     setIsMenuOpen(false);
+//   };
+
+//   const handleNavClick = () => {
+//     setIsMenuOpen(false);
+//   };
+
+//   const toggleMenu = () => {
+//     setIsMenuOpen(!isMenuOpen);
+//   };
+
+//   return (
+//     <Navbar
+//       variant="light"
+//       expand="xl"
+//       expanded={isMenuOpen}
+//       className="bg-white shadow-sm position-sticky top-0 custom-navbar"
+//       style={{
+//         borderTop: "4px solid #FF5733",
+//         zIndex: 1000,
+//         minHeight: "70px",
+//       }}
+//     >
+//       <Container fluid className="px-2 px-sm-3 px-md-4 px-lg-5">
+//         {/* Brand Logo */}
+//         <Navbar.Brand
+//           href="#home"
+//           className="me-auto d-flex align-items-center"
+//           onClick={handleHomeClick}
+//         >
+//           <img
+//             src={HeaderLogo}
+//             alt="Header Logo"
+//             className="header-logo"
+//           />
+//         </Navbar.Brand>
+
+//         {/* Custom Mobile Toggle Button */}
+//         <button
+//           className="navbar-toggler custom-toggler d-xl-none"
+//           type="button"
+//           onClick={toggleMenu}
+//           aria-controls="basic-navbar-nav"
+//           aria-expanded={isMenuOpen}
+//           aria-label="Toggle navigation"
+//         >
+//           {isMenuOpen ? (
+//             <FaTimes className="toggler-icon" />
+//           ) : (
+//             <FaBars className="toggler-icon" />
+//           )}
+//         </button>
+
+//         {/* Collapsible Content */}
+//         <Navbar.Collapse id="basic-navbar-nav" className="custom-collapse">
+//           <div className="navbar-content-wrapper">
+//             {/* Navigation Links */}
+//             <Nav className="navbar-nav-custom">
+//               <Nav.Link
+//                 href="/#home"
+//                 className="nav-link-custom"
+//                 onClick={handleNavClick}
+//               >
+//                 Home
+//               </Nav.Link>
+//               <Nav.Link
+//                 href="#about"
+//                 className="nav-link-custom"
+//                 onClick={handleNavClick}
+//               >
+//                 About
+//               </Nav.Link>
+//               <NavDropdown
+//                 title={
+//                   <span className="dropdown-title">
+//                     Projects <FaChevronDown className="dropdown-arrow" />
+//                   </span>
+//                 }
+//                 id="projects-dropdown"
+//                 className="nav-dropdown-custom"
+//               >
+//                 <NavDropdown.Item
+//                   onClick={() => {
+//                     navigate("/current-projects");
+//                     setIsMenuOpen(false);
+//                   }}
+//                 >
+//                   Current Projects
+//                 </NavDropdown.Item>
+//                 <NavDropdown.Item
+//                   onClick={() => {
+//                     navigate("/past-projects");
+//                     setIsMenuOpen(false);
+//                   }}
+//                 >
+//                   Past Projects
+//                 </NavDropdown.Item>
+//               </NavDropdown>
+//               <Nav.Link
+//                 href="#warriors"
+//                 className="nav-link-custom"
+//                 onClick={handleNavClick}
+//               >
+//                 Our Warriors
+//               </Nav.Link>
+//               <NavDropdown
+//                 title={
+//                   <span className="dropdown-title">
+//                     Join Hands <FaChevronDown className="dropdown-arrow" />
+//                   </span>
+//                 }
+//                 id="join-hands-dropdown"
+//                 className="nav-dropdown-custom"
+//               >
+//                 <NavDropdown.Item href="#join1" onClick={handleNavClick}>
+//                   Join 1
+//                 </NavDropdown.Item>
+//                 <NavDropdown.Item href="#join2" onClick={handleNavClick}>
+//                   Join 2
+//                 </NavDropdown.Item>
+//                 <NavDropdown.Item href="#join3" onClick={handleNavClick}>
+//                   Join 3
+//                 </NavDropdown.Item>
+//               </NavDropdown>
+//               <Nav.Link
+//                 href="#gallery"
+//                 className="nav-link-custom"
+//                 onClick={handleNavClick}
+//               >
+//                 Gallery
+//               </Nav.Link>
+//               <Nav.Link
+//                 href="#blog"
+//                 className="nav-link-custom"
+//                 onClick={handleNavClick}
+//               >
+//                 Blog / News
+//               </Nav.Link>
+//               <Nav.Link
+//                 href="#partners"
+//                 className="nav-link-custom"
+//                 onClick={handleNavClick}
+//               >
+//                 Partners
+//               </Nav.Link>
+//               <Nav.Link
+//                 href="#contact"
+//                 className="nav-link-custom"
+//                 onClick={handleNavClick}
+//               >
+//                 Contact
+//               </Nav.Link>
+//             </Nav>
+
+//             {/* Action Button */}
+//             <div className="action-button-wrapper">
+//               {location.pathname === "/donation" ? (
+//                 <Button
+//                   variant="warning"
+//                   className="action-button home-button"
+//                   onClick={handleHomeClick}
+//                 >
+//                   <BiHome className="button-icon" />
+//                   <span className="button-text">Home</span>
+//                 </Button>
+//               ) : (
+//                 <Button
+//                   variant="warning"
+//                   className="action-button donate-button"
+//                   onClick={handleDonateNowClick}
+//                 >
+//                   <span className="button-text">Donate Now</span>
+//                 </Button>
+//               )}
+//             </div>
+//           </div>
+//         </Navbar.Collapse>
+//       </Container>
+//     </Navbar>
+//   );
+// };
+
+// export default Header;
+
+import React, { useState } from "react";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+import { Navbar, Nav, NavDropdown, Button, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import HeaderLogo from "../../assets/icons/HeaderLogo.svg";
-import { FaChevronDown } from "react-icons/fa";
-import "./Header.css";
 import { BiHome } from "react-icons/bi";
+import { FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
+import "./Header.css";
 
-const Header = () => {
+const Header = ({ blogSliderRef }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleDonateNowClick = () => {
     navigate("/donation");
+    setIsMenuOpen(false);
   };
 
   const handleHomeClick = () => {
     navigate("/");
+    setIsMenuOpen(false);
+  };
+
+  const handleNavClick = async (e, target) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+    if (target === "blog") {
+      // If not on the home page, navigate to home first
+      if (location.pathname !== "/") {
+        await navigate("/");
+      }
+      // Scroll to the BlogSlider section after a small delay
+      setTimeout(() => {
+        if (blogSliderRef?.current) {
+          blogSliderRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 300);
+    }
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
     <Navbar
       variant="light"
-      expand="lg"
-      className="justify-content-between px-5"
+      expand="xl"
+      expanded={isMenuOpen}
+      className="bg-white shadow-sm position-sticky top-0 custom-navbar"
       style={{
         borderTop: "4px solid #FF5733",
-        backgroundColor: "white",
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
         zIndex: 1000,
-        position: "relative",
+        minHeight: "70px",
       }}
     >
-      <Navbar.Brand href="#home">
-        <img src={HeaderLogo} alt="Header Logo" />
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Container fluid>
-          <Row className="w-100">
-            <Col xs={12} lg={9} className="d-flex align-items-center">
-              <Nav className="mx-auto">
-                <Nav.Link href="#home" className="mx-2 fs-6 text-dark">
-                  Home
-                </Nav.Link>
-                <Nav.Link href="#about" className="mx-2 fs-6 text-dark">
-                  About
-                </Nav.Link>
-
-                <NavDropdown
-                  title={
-                    <>
-                      <span className="text-dark">Projects</span>{" "}
-                      <FaChevronDown className="custom-dropdown-icon text-dark" />
-                    </>
-                  }
-                  id="projects-dropdown"
-                  className="mx-2 fs-6"
+      <Container fluid className="px-2 px-sm-3 px-md-4 px-lg-5">
+        <Navbar.Brand
+          as={Link}
+          to="/"
+          className="me-auto d-flex align-items-center"
+          onClick={handleHomeClick}
+        >
+          <img src={HeaderLogo} alt="Header Logo" className="header-logo" />
+        </Navbar.Brand>
+        <button
+          className="navbar-toggler custom-toggler d-xl-none"
+          type="button"
+          onClick={toggleMenu}
+          aria-controls="basic-navbar-nav"
+          aria-expanded={isMenuOpen}
+          aria-label="Toggle navigation"
+        >
+          {isMenuOpen ? (
+            <FaTimes className="toggler-icon" />
+          ) : (
+            <FaBars className="toggler-icon" />
+          )}
+        </button>
+        <Navbar.Collapse id="basic-navbar-nav" className="custom-collapse">
+          <div className="navbar-content-wrapper">
+            <Nav className="navbar-nav-custom">
+              <Nav.Link
+                as={Link}
+                to="/"
+                className="nav-link-custom"
+                onClick={handleHomeClick}
+              >
+                Home
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/#about"
+                className="nav-link-custom"
+                onClick={(e) => handleNavClick(e, "about")}
+              >
+                About
+              </Nav.Link>
+              <NavDropdown
+                title={
+                  <span className="dropdown-title">
+                    Projects <FaChevronDown className="dropdown-arrow" />
+                  </span>
+                }
+                id="projects-dropdown"
+                className="nav-dropdown-custom"
+              >
+                <NavDropdown.Item
+                  as={Link}
+                  to="/current-projects"
+                  onClick={() => setIsMenuOpen(false)}
                 >
-                  <NavDropdown.Item href="#project1" className="text-dark">
-                    Project 1
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#project2" className="text-dark">
-                    Project 2
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#project3" className="text-dark">
-                    Project 3
-                  </NavDropdown.Item>
-                </NavDropdown>
-
-                <NavDropdown
-                  title={
-                    <>
-                      <span className="text-dark">Our Works</span>{" "}
-                      <FaChevronDown className="custom-dropdown-icon text-dark" />
-                    </>
-                  }
-                  id="our-works-dropdown"
-                  className="mx-2 fs-6"
+                  Current Projects
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/past-projects"
+                  onClick={() => setIsMenuOpen(false)}
                 >
-                  <NavDropdown.Item href="#work1" className="text-dark">
-                    Work 1
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#work2" className="text-dark">
-                    Work 2
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#work3" className="text-dark">
-                    Work 3
-                  </NavDropdown.Item>
-                </NavDropdown>
-
-                <Nav.Link href="#warriors" className="mx-2 fs-6 text-dark">
-                  Our Warriors
-                </Nav.Link>
-
-                <NavDropdown
-                  title={
-                    <>
-                      <span className="text-dark">Impacts</span>{" "}
-                      <FaChevronDown className="custom-dropdown-icon text-dark" />
-                    </>
-                  }
-                  id="impacts-dropdown"
-                  className="mx-2 fs-6"
+                  Past Projects
+                </NavDropdown.Item>
+              </NavDropdown>
+              <Nav.Link
+                as={Link}
+                to="/#warriors"
+                className="nav-link-custom"
+                onClick={(e) => handleNavClick(e, "warriors")}
+              >
+                Our Warriors
+              </Nav.Link>
+              <NavDropdown
+                title={
+                  <span className="dropdown-title">
+                    Join Hands <FaChevronDown className="dropdown-arrow" />
+                  </span>
+                }
+                id="join-hands-dropdown"
+                className="nav-dropdown-custom"
+              >
+                <NavDropdown.Item
+                  as={Link}
+                  to="/#join1"
+                  onClick={() => setIsMenuOpen(false)}
                 >
-                  <NavDropdown.Item href="#impact1" className="text-dark">
-                    Impact 1
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#impact2" className="text-dark">
-                    Impact 2
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#impact3" className="text-dark">
-                    Impact 3
-                  </NavDropdown.Item>
-                </NavDropdown>
-
-                <NavDropdown
-                  title={
-                    <>
-                      <span className="text-dark">Join Hands</span>{" "}
-                      <FaChevronDown className="custom-dropdown-icon text-dark" />
-                    </>
-                  }
-                  id="join-hands-dropdown"
-                  className="mx-2 fs-6"
+                  Join 1
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/#join2"
+                  onClick={() => setIsMenuOpen(false)}
                 >
-                  <NavDropdown.Item href="#join1" className="text-dark">
-                    Join 1
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#join2" className="text-dark">
-                    Join 2
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#join3" className="text-dark">
-                    Join 3
-                  </NavDropdown.Item>
-                </NavDropdown>
-
-                <Nav.Link href="#gallery" className="mx-2 fs-6 text-dark">
-                  Gallery
-                </Nav.Link>
-                <Nav.Link href="#blog" className="mx-2 fs-6 text-dark">
-                  Blog / News
-                </Nav.Link>
-                <Nav.Link href="#partners" className="mx-2 fs-6 text-dark">
-                  Partners
-                </Nav.Link>
-                <Nav.Link href="#contact" className="mx-2 fs-6 text-dark">
-                  Contact
-                </Nav.Link>
-              </Nav>
-            </Col>
-
-            {/* Donate Now Button Section */}
-            <Col xs={12} lg={3} className="d-flex justify-content-end align-items-center flex-column">
+                  Join 2
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/#join3"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Join 3
+                </NavDropdown.Item>
+              </NavDropdown>
+              <Nav.Link
+                as={Link}
+                to="/gallery"
+                className="nav-link-custom"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Gallery
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/#blog"
+                className="nav-link-custom"
+                onClick={(e) => handleNavClick(e, "blog")}
+              >
+                Blog / News
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/#partners"
+                className="nav-link-custom"
+                onClick={(e) => handleNavClick(e, "partners")}
+              >
+                Partners
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/#contact"
+                className="nav-link-custom"
+                onClick={(e) => handleNavClick(e, "contact")}
+              >
+                Contact
+              </Nav.Link>
+            </Nav>
+            <div className="action-button-wrapper">
               {location.pathname === "/donation" ? (
                 <Button
                   variant="warning"
-                  className="text-white"
-                  style={{
-                    backgroundColor: "#FF5733",
-                    fontSize: "1.3em",
-                    padding: "12px 25px",
-                    border: "none",
-                    display: "flex",
-                    alignItems: "center",
-                    marginTop: "auto",  // Pushes button to bottom in mobile view
-                  }}
+                  className="action-button home-button"
                   onClick={handleHomeClick}
                 >
-                  <BiHome style={{ marginRight: "8px" }} />
-                  <span className="pt-1">Home</span>
+                  <BiHome className="button-icon" />
+                  <span className="button-text">Home</span>
                 </Button>
               ) : (
                 <Button
                   variant="warning"
-                  className="text-white"
-                  style={{
-                    backgroundColor: "#FF5733",
-                    fontSize: "1.3em",
-                    padding: "12px 25px",
-                    border: "none",
-                    marginTop: "auto",  // Pushes button to bottom in mobile view
-                  }}
+                  className="action-button donate-button"
                   onClick={handleDonateNowClick}
                 >
-                  Donate Now
+                  <span className="button-text">Donate Now</span>
                 </Button>
               )}
-            </Col>
-          </Row>
-        </Container>
-      </Navbar.Collapse>
+            </div>
+          </div>
+        </Navbar.Collapse>
+      </Container>
     </Navbar>
   );
 };
