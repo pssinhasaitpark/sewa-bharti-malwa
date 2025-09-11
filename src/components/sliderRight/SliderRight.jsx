@@ -121,19 +121,19 @@ const MyCarousel = () => {
       image: RightSlider1,
       title: "Empower Someone, If You Can",
       date: "03 - 06 - 2025",
-      description: `New operation theatre inaugurated: In July 2024, Seva Bharathi inaugurated a state-of-the-art operation theatre at the Ichchapuram Seetarambhag Ishwar Chandera Charitable Hospital in Hyderabad. This facility aims to enhance surgical care for underserved communities.`,
+      description: `New operation theatre inaugurated: In July 2024, Sewa Bharathi inaugurated a state-of-the-art operation theatre at the Ichchapuram Seetarambhag Ishwar Chandera Charitable Hospital in Hyderabad. This facility aims to enhance surgical care for underserved communities.`,
     },
     {
       image: RightSlider2,
-      title: "What's New at Sevabharti",
+      title: "What's New at Sewabharti",
       date: "04 - 06 - 2025",
       description: `Discover a variety of upcoming programs designed to empower students and communities through education and social service. Stay informed about important project milestones that highlight the progress and impact of our initiatives.`,
     },
     {
       image: RightSlider3,
-      title: "Sevabharti Business Support",
+      title: "Sewabharti Business Support",
       date: "05 - 06 - 2025",
-      description: `Sevabharti Business Support is dedicated to empowering entrepreneurs and small businesses with the tools, guidance, and resources they need to succeed. From mentorship to training programs, we help you overcome challenges and unlock your business’s full potential.`,
+      description: `Sewabharti Business Support is dedicated to empowering entrepreneurs and small businesses with the tools, guidance, and resources they need to succeed. From mentorship to training programs, we help you overcome challenges and unlock your business’s full potential.`,
     },
   ];
 

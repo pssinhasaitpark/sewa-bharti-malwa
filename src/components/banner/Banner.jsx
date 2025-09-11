@@ -13,19 +13,19 @@ const AboutUs = () => {
             <span className="upholding-dharma"> Upholding <br></br>Dharma</span>
           </h1>
           <p className="about-us-content">
-            Seva Bharti is a grassroots voluntary organization inspired by the
+            Sewa Bharti is a grassroots voluntary organization inspired by the
             ideals of Rashtriya Swayamsevak Sangh (RSS). Established with a
-            mission to uplift the underprivileged sections of society, Seva
+            mission to uplift the underprivileged sections of society, Sewa
             Bharti works tirelessly to bring holistic development to
             marginalized communities through education, healthcare, skill
             development, and social empowerment.
           </p>
           <p className="about-us-content">
-            Rooted in the spirit of "Nar Seva, Narayan Seva" – Serving Humanity
+            Rooted in the spirit of "Nar Sewa, Narayan Sewa" – Serving Humanity
             is Serving the Divine – the organization reaches out to slum
             dwellers, tribal communities, differently-abled individuals, and
             economically weaker families across India. With thousands of
-            committed volunteers, Seva Bharti runs thousands of service projects
+            committed volunteers, Sewa Bharti runs thousands of service projects
             including free schools, vocational training centers, health camps,
             and women's empowerment initiatives.
           </p>

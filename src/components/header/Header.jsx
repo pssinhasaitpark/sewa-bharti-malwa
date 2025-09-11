@@ -1,5 +1,5 @@
 // import React, { useState } from "react";
-// import { useNavigate, useLocation } from "react-router-dom";
+// import { useNavigate, useLocation, Link } from "react-router-dom";
 // import { Navbar, Nav, NavDropdown, Button, Container } from "react-bootstrap";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import HeaderLogo from "../../assets/icons/HeaderLogo.svg";
@@ -7,7 +7,7 @@
 // import { FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
 // import "./Header.css";
 
-// const Header = () => {
+// const Header = ({ blogSliderRef }) => {
 //   const navigate = useNavigate();
 //   const location = useLocation();
 //   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,8 +22,21 @@
 //     setIsMenuOpen(false);
 //   };
 
-//   const handleNavClick = () => {
+//   const handleNavClick = async (e, target) => {
+//     e.preventDefault();
 //     setIsMenuOpen(false);
+//     if (target === "blog") {
+//       // If not on the home page, navigate to home first
+//       if (location.pathname !== "/") {
+//         await navigate("/");
+//       }
+//       // Scroll to the BlogSlider section after a small delay
+//       setTimeout(() => {
+//         if (blogSliderRef?.current) {
+//           blogSliderRef.current.scrollIntoView({ behavior: "smooth" });
+//         }
+//       }, 300);
+//     }
 //   };
 
 //   const toggleMenu = () => {
@@ -43,20 +56,14 @@
 //       }}
 //     >
 //       <Container fluid className="px-2 px-sm-3 px-md-4 px-lg-5">
-//         {/* Brand Logo */}
 //         <Navbar.Brand
-//           href="#home"
+//           as={Link}
+//           to="/"
 //           className="me-auto d-flex align-items-center"
 //           onClick={handleHomeClick}
 //         >
-//           <img
-//             src={HeaderLogo}
-//             alt="Header Logo"
-//             className="header-logo"
-//           />
+//           <img src={HeaderLogo} alt="Header Logo" className="header-logo" />
 //         </Navbar.Brand>
-
-//         {/* Custom Mobile Toggle Button */}
 //         <button
 //           className="navbar-toggler custom-toggler d-xl-none"
 //           type="button"
@@ -71,23 +78,22 @@
 //             <FaBars className="toggler-icon" />
 //           )}
 //         </button>
-
-//         {/* Collapsible Content */}
 //         <Navbar.Collapse id="basic-navbar-nav" className="custom-collapse">
 //           <div className="navbar-content-wrapper">
-//             {/* Navigation Links */}
 //             <Nav className="navbar-nav-custom">
 //               <Nav.Link
-//                 href="/#home"
+//                 as={Link}
+//                 to="/"
 //                 className="nav-link-custom"
-//                 onClick={handleNavClick}
+//                 onClick={handleHomeClick}
 //               >
 //                 Home
 //               </Nav.Link>
 //               <Nav.Link
-//                 href="#about"
+//                 as={Link}
+//                 to="/#about"
 //                 className="nav-link-custom"
-//                 onClick={handleNavClick}
+//                 onClick={(e) => handleNavClick(e, "about")}
 //               >
 //                 About
 //               </Nav.Link>
@@ -101,26 +107,25 @@
 //                 className="nav-dropdown-custom"
 //               >
 //                 <NavDropdown.Item
-//                   onClick={() => {
-//                     navigate("/current-projects");
-//                     setIsMenuOpen(false);
-//                   }}
+//                   as={Link}
+//                   to="/current-projects"
+//                   onClick={() => setIsMenuOpen(false)}
 //                 >
 //                   Current Projects
 //                 </NavDropdown.Item>
 //                 <NavDropdown.Item
-//                   onClick={() => {
-//                     navigate("/past-projects");
-//                     setIsMenuOpen(false);
-//                   }}
+//                   as={Link}
+//                   to="/upcoming-projects"
+//                   onClick={() => setIsMenuOpen(false)}
 //                 >
-//                   Past Projects
+//                   upcoming Projects
 //                 </NavDropdown.Item>
 //               </NavDropdown>
 //               <Nav.Link
-//                 href="#warriors"
+//                 as={Link}
+//                 to="/#warriors"
 //                 className="nav-link-custom"
-//                 onClick={handleNavClick}
+//                 onClick={(e) => handleNavClick(e, "warriors")}
 //               >
 //                 Our Warriors
 //               </Nav.Link>
@@ -133,47 +138,61 @@
 //                 id="join-hands-dropdown"
 //                 className="nav-dropdown-custom"
 //               >
-//                 <NavDropdown.Item href="#join1" onClick={handleNavClick}>
+//                 <NavDropdown.Item
+//                   as={Link}
+//                   to="/#join1"
+//                   onClick={() => setIsMenuOpen(false)}
+//                 >
 //                   Join 1
 //                 </NavDropdown.Item>
-//                 <NavDropdown.Item href="#join2" onClick={handleNavClick}>
+//                 <NavDropdown.Item
+//                   as={Link}
+//                   to="/#join2"
+//                   onClick={() => setIsMenuOpen(false)}
+//                 >
 //                   Join 2
 //                 </NavDropdown.Item>
-//                 <NavDropdown.Item href="#join3" onClick={handleNavClick}>
+//                 <NavDropdown.Item
+//                   as={Link}
+//                   to="/#join3"
+//                   onClick={() => setIsMenuOpen(false)}
+//                 >
 //                   Join 3
 //                 </NavDropdown.Item>
 //               </NavDropdown>
 //               <Nav.Link
-//                 href="#gallery"
+//                 as={Link}
+//                 to="/gallery"
 //                 className="nav-link-custom"
-//                 onClick={handleNavClick}
+//                 onClick={() => setIsMenuOpen(false)}
 //               >
 //                 Gallery
 //               </Nav.Link>
 //               <Nav.Link
-//                 href="#blog"
+//                 as={Link}
+//                 to="/#blog"
 //                 className="nav-link-custom"
-//                 onClick={handleNavClick}
+//                 onClick={(e) => handleNavClick(e, "blog")}
 //               >
 //                 Blog / News
 //               </Nav.Link>
 //               <Nav.Link
-//                 href="#partners"
+//                 as={Link}
+//                 to="/#partners"
 //                 className="nav-link-custom"
-//                 onClick={handleNavClick}
+//                 onClick={(e) => handleNavClick(e, "partners")}
 //               >
 //                 Partners
 //               </Nav.Link>
 //               <Nav.Link
-//                 href="#contact"
+//                 as={Link}
+//                 to="/#contact"
 //                 className="nav-link-custom"
-//                 onClick={handleNavClick}
+//                 onClick={(e) => handleNavClick(e, "contact")}
 //               >
 //                 Contact
 //               </Nav.Link>
 //             </Nav>
-
-//             {/* Action Button */}
 //             <div className="action-button-wrapper">
 //               {location.pathname === "/donation" ? (
 //                 <Button
@@ -202,7 +221,6 @@
 // };
 
 // export default Header;
-
 import React, { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown, Button, Container } from "react-bootstrap";
@@ -212,7 +230,7 @@ import { BiHome } from "react-icons/bi";
 import { FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
 import "./Header.css";
 
-const Header = ({ blogSliderRef }) => {
+const Header = ({ blogSliderRef, partnersRef }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -230,6 +248,7 @@ const Header = ({ blogSliderRef }) => {
   const handleNavClick = async (e, target) => {
     e.preventDefault();
     setIsMenuOpen(false);
+
     if (target === "blog") {
       // If not on the home page, navigate to home first
       if (location.pathname !== "/") {
@@ -239,6 +258,19 @@ const Header = ({ blogSliderRef }) => {
       setTimeout(() => {
         if (blogSliderRef?.current) {
           blogSliderRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 300);
+    }
+
+    if (target === "partners") {
+      // If not on the home page, navigate to home first
+      if (location.pathname !== "/") {
+        await navigate("/");
+      }
+      // Scroll to the Partners section after a small delay
+      setTimeout(() => {
+        if (partnersRef?.current) {
+          partnersRef.current.scrollIntoView({ behavior: "smooth" });
         }
       }, 300);
     }
@@ -296,9 +328,9 @@ const Header = ({ blogSliderRef }) => {
               </Nav.Link>
               <Nav.Link
                 as={Link}
-                to="/#about"
+                to="/aboutus"
                 className="nav-link-custom"
-                onClick={(e) => handleNavClick(e, "about")}
+                onClick={() => setIsMenuOpen(false)}
               >
                 About
               </Nav.Link>
@@ -320,17 +352,17 @@ const Header = ({ blogSliderRef }) => {
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   as={Link}
-                  to="/past-projects"
+                  to="/upcoming-projects"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Past Projects
+                  upcoming Projects
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link
                 as={Link}
-                to="/#warriors"
+                to="/our-warriors"
                 className="nav-link-custom"
-                onClick={(e) => handleNavClick(e, "warriors")}
+                onClick={() => setIsMenuOpen(false)}
               >
                 Our Warriors
               </Nav.Link>

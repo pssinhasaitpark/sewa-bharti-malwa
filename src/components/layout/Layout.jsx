@@ -22,11 +22,11 @@ import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import "./Layout.css";
 
-const Layout = ({ children, blogSliderRef }) => {
+const Layout = ({  children, blogSliderRef, partnersRef  }) => {
   return (
     <div className="layout-wrapper">
-      <Header blogSliderRef={blogSliderRef} />
-      <main className="main-content">{children}</main>
+     <Header blogSliderRef={blogSliderRef} partnersRef={partnersRef} />
+      <main className="main-content mb-5 pb-5">{children}</main>
       <Footer />
     </div>
   );
