@@ -1,93 +1,64 @@
-import React from 'react';
-import { Container, Row, Col, Card, Badge, Button } from 'react-bootstrap';
-import { FaCalendarAlt, FaMapMarkerAlt, FaUsers, FaArrowRight, FaHistory, FaEye } from 'react-icons/fa';
-import './UpcomingProject.css';
+import React from "react";
+import { Container, Row, Col, Card, Badge, Button } from "react-bootstrap";
+import {
+  FaCalendarAlt,
+  FaMapMarkerAlt,
+  FaUsers,
+  FaArrowRight,
+  FaHistory,
+  FaEye,
+  FaClock,
+  FaBullseye,
+  FaHandsHelping,
+} from "react-icons/fa";
+import "./UpcomingProject.css";
+import projectData from "../../utils/UpCommingProjects.json";
 
-const upcomingProject = () => {
-  const upcomingProjects = [
-    {
-      id: 1,
-      title: "Winter Clothing Drive 2023",
-      description: "Distributed warm clothing and blankets to underprivileged families across the Malwa region during the winter season.",
-      location: "Malwa Region, Punjab",
-      beneficiaries: "3,500+ families",
-      startDate: "October 2023",
-      endDate: "January 2024",
-      impact: "Reduced winter-related illnesses by 18% in target areas",
-      image: "https://images.unsplash.com/photo-1491172700640-4f1dfbb3d7f3?w=400&h=250&fit=crop",
-      category: "Relief & Welfare"
-    },
-    {
-      id: 2,
-      title: "Village Sanitation Program",
-      description: "Implemented sanitation facilities and awareness programs in 15 villages, resulting in improved hygiene and reduced disease.",
-      location: "Multiple Villages",
-      beneficiaries: "8,000+ people",
-      startDate: "April 2023",
-      endDate: "November 2023",
-      impact: "Improved sanitation coverage by 65%",
-      image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=250&fit=crop",
-      category: "Health & Sanitation"
-    },
-    {
-      id: 3,
-      title: "Scholarship Support Program",
-      description: "Provided scholarships and study materials to meritorious students from low-income families to continue higher education.",
-      location: "Punjab",
-      beneficiaries: "500+ students",
-      startDate: "June 2022",
-      endDate: "May 2023",
-      impact: "90% of beneficiaries continued education successfully",
-      image: "https://images.unsplash.com/photo-1588072432836-e10032774350?w=400&h=250&fit=crop",
-      category: "Education"
-    }
-  ];
-
-  const highlights = [
-    {
-      id: 1,
-      title: "Community Impact Report 2023",
-      excerpt: "A comprehensive overview of our community initiatives and the measurable impact created in 2023.",
-      date: "December 30, 2023",
-      views: 1880,
-      image: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=300&h=200&fit=crop"
-    },
-    {
-      id: 2,
-      title: "Volunteer Stories: Making a Difference",
-      excerpt: "Heartwarming stories from our dedicated volunteers who worked tirelessly across projects.",
-      date: "November 20, 2023",
-      views: 1422,
-      image: "https://images.unsplash.com/photo-1519337265831-281ec6cc8514?w=300&h=200&fit=crop"
-    },
-    {
-      id: 3,
-      title: "Award for Social Service Excellence",
-      excerpt: "Sewa Bharti Malwa received regional recognition for outstanding contribution to community service.",
-      date: "October 10, 2023",
-      views: 980,
-      image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=300&h=200&fit=crop"
-    }
-  ];
+const UpcomingProject = () => {
+  const { upcomingProjects, highlights } = projectData;
 
   const getCategoryColor = (category) => {
     const colors = {
       "Relief & Welfare": "warning",
       "Health & Sanitation": "primary",
-      "Education": "success"
+      "Healthcare": "success",
+      "Education": "info",
     };
     return colors[category] || "secondary";
   };
 
+  const getStatusColor = (status) => {
+    const colors = {
+      upcoming: "primary",
+      completed: "success",
+      ongoing: "warning",
+    };
+    return colors[status] || "secondary";
+  };
+
+  const getStatusIcon = (status) => {
+    const icons = {
+      upcoming: FaClock,
+      completed: FaHistory,
+      ongoing: FaHandsHelping,
+    };
+    const IconComponent = icons[status] || FaClock;
+    return <IconComponent style={{ marginRight: 6 }} />;
+  };
+
   return (
     <div className="upcoming-project-page">
-      <div className="hero-section upcoming-hero">
+      <div className="">
         <Container>
           <Row className="justify-content-center text-center">
             <Col lg={8}>
-              <h1 className="hero-title">upcoming Projects</h1>
+              <h1 className="newTitle flagship">
+                Upcoming <span className="upholding-dharma">Projects</span>
+              </h1>
               <p className="hero-subtitle">
-                A showcase of our completed initiatives and the lasting impact created through collective effort and compassion.
+                Innovative healthcare initiatives designed to transform lives
+                and bridge the healthcare gap in rural and tribal communities
+                of Madhya Pradesh.
               </p>
             </Col>
           </Row>
@@ -98,26 +69,44 @@ const upcomingProject = () => {
         <Row>
           <Col lg={8}>
             <div className="section-header">
-              <h2 className="section-title">Completed Initiatives</h2>
-              <p className="section-subtitle">Highlights of our work and its outcomes</p>
+              <h2 className="section-title">Revolutionary Healthcare Initiative</h2>
+              <p className="section-subtitle">
+                Mobile Hospitals bringing comprehensive medical care to
+                underserved communities
+              </p>
             </div>
 
             <div className="projects-grid">
               {upcomingProjects.map((project) => (
                 <Card key={project.id} className="project-card">
                   <div className="card-image-container">
-                    <Card.Img variant="top" src={project.image} className="project-image" />
-                    <Badge bg={getCategoryColor(project.category)} className="category-badge">
+                    <Card.Img
+                      variant="top"
+                      src={project.image}
+                      className="project-image"
+                    />
+                    <Badge
+                      bg={getCategoryColor(project.category)}
+                      className="category-badge"
+                    >
                       {project.category}
                     </Badge>
-                    <Badge bg="secondary" className="status-badge">
-                      <FaHistory style={{ marginRight: 6 }} /> Completed
+                    <Badge 
+                      bg={getStatusColor(project.status)} 
+                      className="status-badge"
+                    >
+                      {getStatusIcon(project.status)}
+                      {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
                     </Badge>
                   </div>
 
                   <Card.Body className="project-body">
-                    <Card.Title className="project-title">{project.title}</Card.Title>
-                    <Card.Text className="project-description">{project.description}</Card.Text>
+                    <Card.Title className="project-title">
+                      {project.title}
+                    </Card.Title>
+                    <Card.Text className="project-description">
+                      {project.description}
+                    </Card.Text>
 
                     <div className="project-details">
                       <div className="detail-item">
@@ -130,17 +119,41 @@ const upcomingProject = () => {
                       </div>
                       <div className="detail-item">
                         <FaCalendarAlt className="detail-icon" />
-                        <span>{project.startDate} - {project.endDate}</span>
+                        <span>
+                          {project.startDate} - {project.endDate}
+                        </span>
                       </div>
                     </div>
 
+                    {project.keyFeatures && (
+                      <div className="key-features">
+                        <h6 className="features-title">
+                          <FaBullseye className="features-icon" />
+                          Key Features
+                        </h6>
+                        <ul className="features-list">
+                          {project.keyFeatures.slice(0, 4).map((feature, index) => (
+                            <li key={index} className="feature-item">
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
                     <div className="impact-banner">
-                      <span className="impact-label">Impact</span>
+                      <span className="impact-label">Mission</span>
                       <span className="impact-text">{project.impact}</span>
                     </div>
 
+                    <div className="project-alignment">
+                      <small className="alignment-text">
+                        <strong>Aligned with:</strong> {project.alignment}
+                      </small>
+                    </div>
+
                     <Button variant="outline-dark" className="learn-more-btn">
-                      Read Case Study <FaArrowRight className="btn-icon" />
+                      Learn More <FaArrowRight className="btn-icon" />
                     </Button>
                   </Card.Body>
                 </Card>
@@ -152,8 +165,8 @@ const upcomingProject = () => {
             <div className="news-sidebar">
               <div className="sidebar-header">
                 <h3 className="sidebar-title">
-                  <FaHistory className="title-icon" />
-                  Project Highlights
+                  <FaClock className="title-icon" />
+                  Project Updates
                 </h3>
               </div>
 
@@ -164,8 +177,12 @@ const upcomingProject = () => {
                       <Card.Img src={item.image} className="news-image" />
                     </div>
                     <Card.Body className="news-body">
-                      <Card.Title className="news-title">{item.title}</Card.Title>
-                      <Card.Text className="news-excerpt">{item.excerpt}</Card.Text>
+                      <Card.Title className="news-title">
+                        {item.title}
+                      </Card.Title>
+                      <Card.Text className="news-excerpt">
+                        {item.excerpt}
+                      </Card.Text>
                       <div className="news-meta">
                         <div className="news-date">
                           <FaCalendarAlt className="meta-icon" />
@@ -182,7 +199,7 @@ const upcomingProject = () => {
               </div>
 
               <Button variant="dark" className="view-all-news-btn">
-                View Archive <FaArrowRight className="btn-icon" />
+                View All Updates <FaArrowRight className="btn-icon" />
               </Button>
             </div>
           </Col>
@@ -192,5 +209,4 @@ const upcomingProject = () => {
   );
 };
 
-export default upcomingProject;
-
+export default UpcomingProject;

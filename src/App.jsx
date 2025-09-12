@@ -12,6 +12,8 @@ import {
 import Layout from "./components/layout/Layout";
 import BlogDetail from "./pages/BlogDetail/BlogDetail";
 import Gallery from "./pages/GalleryPage/GalleryPage";
+import Contact from "./pages/Contact/contact";
+import { JoinUs } from "./components";
 
 function App() {
   const blogSliderRef = useRef(null);
@@ -36,8 +38,11 @@ function App() {
             <Route path="/blog/:id" element={<BlogDetail />} />
             <Route path="/upcoming-projects" element={<UpcomingProject />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/aboutus" element={<AboutPage />} />
-            <Route path="/our-warriors" element={<WarriorsPage />} /> {/* New route */}
+            <Route path="/joinus" element={<JoinUs />} />
+            <Route path="/our-warriors" element={<WarriorsPage />} />{" "}
+            {/* New route */}
           </Routes>
         </Layout>
       </div>

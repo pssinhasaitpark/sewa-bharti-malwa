@@ -1,0 +1,61 @@
+{
+  "currentProjects": [
+    {
+      "id": 1,
+      "title": "Tribal Hostels for Education",
+      "description": "In tribal area literacy rate is very low due to lack of resources and motivation for studies. In addition tribals frequently migrate from one place to other to earn their livelihood. Due to frequent migration their children are not able to attend formal schools regularly. To resolve this issue Sewa Bharti is operating Tribal hostels in urban and rural areas.",
+      "location": "Malwa Region, Madhya Pradesh",
+      "beneficiaries": "1,200+ children",
+      "startDate": "2010",
+      "status": "Active",
+      "progress": 90,
+      "image": "/src/assets/icons/MaskGroup2.svg",
+      "category": "Education & Empowerment",
+      "hostels": [
+        "Sewa Bharti Kanya Chatrawas, Neemuch (M.P.)",
+        "Shri Jagmohan Singh Balika Chhatrawas, Ujjain",
+        "Dr. Bhimrao Ramji Ambedkar Balak Chhatrawas, Ujjain",
+        "Seva Dham Janjati Balak Chhatrawas, Udaynagar",
+        "Jeevan Umang Balika Chhatrawas, Malvi, Alirajpur",
+        "Dr. Major Anuradha Smriti Seva Sadan Chhatrawas, Khargone",
+        "Jeevan Umang Vanvasi Balika Chhatrawas",
+        "Keshav Seva Dham Viklang Bal Ashram",
+        "Sevadham Chhatrawas, Kalapatha, Khalwa",
+        "Shri Guraji Balak Chhatrawas",
+        "Vidhyadham Balak Chhatrawas"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Matruchhaya – A Home Beyond Orphanage",
+      "description": "It is never easy for a mother to part from her child, especially when the little one has just entered the world. Yet, life sometimes unfolds in painful ways; when motherhood collapses, and an innocent child is left alone to fate. That very fate then brings the child to Matruchhaya - where a Yashoda embraces the little one with the same love and care as her own.\n\nEstablished in 2006, Matruchhaya is not just an orphanage. It is more than a nurturing refuge for abandoned infants; it is a palace where children open their eyes to happiness, affection, and joy. Here, the lives of these little ones blossom as naturally and beautifully as they would with their parents.\n\nTo shape their future, Matruchhaya, with the support of the Central Adoption Resource Authority (CARA), enables legal adoption.",
+      "location": "Indore, Madhya Pradesh",
+      "beneficiaries": "240+ adoptions, 50+ children currently in care",
+      "startDate": "2006",
+      "status": "Active",
+      "progress": 85,
+      "image": "/src/assets/icons/BlogImg1.svg",
+      "category": "Child Welfare & Adoption"
+    },
+    {
+      "id": 3,
+      "title": "Sewa Bharti’s Educational Initiatives",
+      "description": "Sewa Bharti’s educational programs are designed to empower underprivileged and tribal communities through targeted, inclusive, and holistic learning. Paath Daan focuses on students in grades 6–10, providing personalized coaching in weaker subjects to build academic confidence and improve board exam performance. Sanskar Kendra and Siksha Kendra cater to younger children—kindergarten and grades 1–5, respectively—using interactive methods like games, songs, and cultural activities to foster a love for learning and bridge early educational gaps. These centers ensure no child is left behind by offering daily coaching, personalized attention, and opportunities for artistic and holistic development.\n\nFor rural and tribal communities, Ekal Vidyalaya adopts a grassroots approach with single-teacher schools, delivering free, non-formal education to children aged 4–10 in remote areas. The Sankalp Computer Center and Disha Competitive Exam Preparation Center further equip youth with digital skills and competitive exam training, ensuring long-term employability and empowerment. Together, these initiatives create a sustainable ecosystem of education, breaking the cycle of poverty and nurturing future-ready individuals.",
+      "location": "Malwa Region, Madhya Pradesh",
+      "beneficiaries": "5,000+ students annually",
+      "startDate": "2012",
+      "status": "Active",
+      "progress": 80,
+      "image": "/src/assets/icons/BlogImg2.svg",
+      "category": "Education",
+      "subPrograms": [
+        "Paath Daan – Academic Support for Secondary Students",
+        "Sanskar Kendra – Early Childhood Education",
+        "Siksha Kendra – Primary Education Support",
+        "Ekal Vidyalaya – One Teacher, One School",
+        "Sankalp Computer Center – Digital Literacy",
+        "Disha Competitive Exam Preparation Center"
+      ]
+    }
+  ]
+}

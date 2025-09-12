@@ -33,6 +33,9 @@ import BlogImg6 from "./icons/BlogImg6.svg";
 import DonationHeroImg from "./icons/DonationHeroImg.svg";
 import Polygon1 from "./icons/Polygon1.svg";
 import Polygon2 from "./icons/Polygon2.svg";
+import IOCLLogo from "./images/IOCLLogo.jpeg";
+import ONGCLogo from "./images/ONGCLogo.png";
+import SbiLogo from "./images/SbiLogo.png";
 export {
   HeaderLogo,
   sliderLeftimg1,
@@ -68,5 +71,8 @@ export {
   BlogImg6,
   DonationHeroImg,
   Polygon1,
-  Polygon2
+  Polygon2,
+  SbiLogo,
+  ONGCLogo,
+  IOCLLogo
 };

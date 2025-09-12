@@ -366,37 +366,15 @@ const Header = ({ blogSliderRef, partnersRef }) => {
               >
                 Our Warriors
               </Nav.Link>
-              <NavDropdown
-                title={
-                  <span className="dropdown-title">
-                    Join Hands <FaChevronDown className="dropdown-arrow" />
-                  </span>
-                }
-                id="join-hands-dropdown"
-                className="nav-dropdown-custom"
+              <Nav.Link
+                as={Link}
+                to="/joinus"
+                className="nav-link-custom"
+                onClick={() => setIsMenuOpen(false)}
               >
-                <NavDropdown.Item
-                  as={Link}
-                  to="/#join1"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Join 1
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  as={Link}
-                  to="/#join2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Join 2
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  as={Link}
-                  to="/#join3"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Join 3
-                </NavDropdown.Item>
-              </NavDropdown>
+                Join Hands
+              </Nav.Link>
+
               <Nav.Link
                 as={Link}
                 to="/gallery"
@@ -423,9 +401,9 @@ const Header = ({ blogSliderRef, partnersRef }) => {
               </Nav.Link>
               <Nav.Link
                 as={Link}
-                to="/#contact"
+                to="/contact"
                 className="nav-link-custom"
-                onClick={(e) => handleNavClick(e, "contact")}
+                onClick={() => setIsMenuOpen(false)}
               >
                 Contact
               </Nav.Link>
