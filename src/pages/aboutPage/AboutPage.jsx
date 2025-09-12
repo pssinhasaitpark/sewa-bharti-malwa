@@ -127,7 +127,7 @@ const AboutPage = () => {
         <div className="container">
           <h2 className="text-center upholding-dharma  fw-bold mb-5">Our Key Projects</h2>
 
-          {/* Hostels Section */}
+          {/* Hostels and Matruchhaya Section */}
           <div className="row mb-5">
             <div className="col-lg-6">
               <div className="card h-100 border-0 shadow-sm">
@@ -202,58 +202,117 @@ const AboutPage = () => {
             </div>
           </div>
 
-          {/* Healthcare Section */}
+          {/* Self Reliance and Healthcare Section */}
           <div className="row mb-5">
-            <div className="col-12">
-              <div className="card border-0 shadow-sm">
+            <div className="col-lg-6">
+              <div className="card h-100 border-0 shadow-sm">
                 <div className="card-body p-4">
-                  <div className="d-flex align-items-center mb-4">
+                  <div className="d-flex align-items-center mb-3">
+                    <div className="bg-warning text-white rounded p-2 me-3">
+                      <Users size={24} />
+                    </div>
+                    <h4 className="card-title mb-0">Self Reliance</h4>
+                  </div>
+                  <p className="card-text">
+                    Empowering communities through skill development and training
+                    programs. Our self-reliance initiatives focus on providing
+                    vocational training and creating opportunities for economic
+                    independence across the Malwa region.
+                  </p>
+                  <ul className="list-unstyled">
+                    <li>
+                      <small className="text-muted">
+                        • Sewing Training Centers
+                      </small>
+                    </li>
+                    <li>
+                      <small className="text-muted">
+                        • Computer Training Centers
+                      </small>
+                    </li>
+                    <li>
+                      <small className="text-muted">
+                        • Beauty Parlour Training
+                      </small>
+                    </li>
+                    <li>
+                      <small className="text-muted">
+                        • Mehendi Carving Training
+                      </small>
+                    </li>
+                    <li>
+                      <small className="text-muted">
+                        • Tribal Empowerment Centers
+                      </small>
+                    </li>
+                    <li>
+                      <small className="text-muted">
+                        • Self Help Group - Vaibhavshree
+                      </small>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Healthcare Overview */}
+            <div className="col-lg-6">
+              <div className="card h-100 border-0 shadow-sm">
+                <div className="card-body p-4">
+                  <div className="d-flex align-items-center mb-3">
                     <div className="bg-info text-white rounded p-2 me-3">
                       <Stethoscope size={24} />
                     </div>
                     <h4 className="card-title mb-0">Healthcare Services</h4>
                   </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <h6 className="fw-bold">Mobile Medical Unit - Manpur</h6>
-                      <p className="small text-muted mb-3">
-                        Serving 52 tribal villages with weekly visits, bringing
-                        essential healthcare directly to remote communities.
-                      </p>
-
-                      <h6 className="fw-bold">MY Hospital Help Desk</h6>
-                      <p className="small text-muted mb-3">
-                        Operating since 2016, providing navigation assistance,
-                        financial aid, blood donation coordination, and access
-                        to government healthcare schemes.
-                        <strong className="text-info d-block">
-                          16,160 beneficiaries (Jan-June 2023)
-                        </strong>
-                      </p>
+                  <p className="card-text">
+                    Comprehensive healthcare services reaching the most remote
+                    communities. Our medical initiatives ensure that quality
+                    healthcare is accessible to all, especially tribal
+                    populations and economically vulnerable families.
+                  </p>
+                 
+                    <ul className="list-unstyled">
+                    <li>
+                      <small className="text-muted">
+                        • Mobile Medical Unit - Manpur
+                      </small>
+                    </li>
+                    <li>
+                      <small className="text-muted">
+                        • MY Hospital Help Desk
+                      </small>
+                    </li>
+                    <li>
+                      <small className="text-muted">
+                        • MTH Hospital Support
+                      </small>
+                    </li>
+                    <li>
+                      <small className="text-muted">
+                        • Sahara Ward
+                      </small>
+                    </li>
+                  
+                  </ul>
+                   <div className="row text-center mt-3">
+                    <div className="col-6">
+                      <strong className="text-info">52</strong>
+                      <br />
+                      <small className="text-muted">Tribal Villages Served</small>
                     </div>
-                    <div className="col-md-6">
-                      <h6 className="fw-bold">MTH Hospital Support</h6>
-                      <p className="small text-muted mb-3">
-                        Launched in January 2023, focusing on gynaecological
-                        care with comprehensive support for women including
-                        financial aid and prenatal care.
-                        <strong className="text-info d-block">
-                          13,565 beneficiaries (Mar-Dec 2023)
-                        </strong>
-                      </p>
-
-                      <h6 className="fw-bold">Sahara Ward</h6>
-                      <p className="small text-muted">
-                        Providing free medications, medical accessories,
-                        orthopaedic implants, and essential items for
-                        financially vulnerable patients.
-                      </p>
+                    <div className="col-6">
+                      <strong className="text-info">29,000+</strong>
+                      <br />
+                      <small className="text-muted">Annual Beneficiaries</small>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+      
 
           {/* Education Section */}
           <div className="row mb-5">
@@ -265,33 +324,57 @@ const AboutPage = () => {
                       <GraduationCap size={24} />
                     </div>
                     <h4 className="card-title mb-0">
-                      Education & Skill Development
+                      Education & Skill Development Programs
                     </h4>
                   </div>
                   <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-md-6">
                       <h6 className="fw-bold">Learning Centers</h6>
+                      <p className="small text-muted mb-3">
+                        Comprehensive educational support through multiple learning
+                        platforms designed to reach children in remote areas and
+                        provide quality education opportunities.
+                      </p>
                       <ul className="list-unstyled small text-muted">
                         <li>• Paathdan Kendra</li>
                         <li>• Sanskar Kendra</li>
                         <li>• Shiksha Kendra</li>
                         <li>• Ekal Vidhyalaya</li>
                       </ul>
+
+                      <h6 className="fw-bold">Competitive Exam Preparation</h6>
+                      <p className="small text-muted mb-3">
+                        Specialized coaching and preparation centers to help
+                        students from disadvantaged backgrounds compete in
+                        various competitive examinations and government job
+                        opportunities.
+                      </p>
+                      <ul className="list-unstyled small text-muted">
+                        <li>• Disha Preparation Center</li>
+                        <li>• Sankalp Computer Training</li>
+                      </ul>
                     </div>
-                    <div className="col-md-4">
-                      <h6 className="fw-bold">Training Programs</h6>
+                    <div className="col-md-6">
+                      <h6 className="fw-bold">Vocational Training Programs</h6>
+                      <p className="small text-muted mb-3">
+                        Skill development initiatives focused on creating
+                        employment opportunities and fostering entrepreneurship
+                        among youth and women in rural and tribal communities.
+                      </p>
                       <ul className="list-unstyled small text-muted">
                         <li>• Computer Training Centers</li>
                         <li>• Sewing Training Centers</li>
                         <li>• Beauty Parlour Training</li>
                         <li>• Mehendi Carving Training</li>
                       </ul>
-                    </div>
-                    <div className="col-md-4">
-                      <h6 className="fw-bold">Competitive Exam Prep</h6>
+
+                      <h6 className="fw-bold">Community Empowerment</h6>
+                      <p className="small text-muted">
+                        Initiatives aimed at strengthening community bonds and
+                        promoting collective growth through group activities
+                        and collaborative learning programs.
+                      </p>
                       <ul className="list-unstyled small text-muted">
-                        <li>• Disha Preparation Center</li>
-                        <li>• Sankalp Computer Training</li>
                         <li>• Tribal Empowerment Centers</li>
                         <li>• Self Help Groups</li>
                       </ul>
@@ -348,8 +431,6 @@ const AboutPage = () => {
           </div>
         </div>
       </div>
-
-     
 
       {/* Call to Action */}
       <div className=" text-white py-5">

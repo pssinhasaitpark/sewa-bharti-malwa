@@ -6,19 +6,19 @@ const Partners = () => {
     {
       id: 1,
       name: 'SBI',
-      logo: 'https://via.placeholder.com/200x100/0066cc/ffffff?text=SBI',
+      logo: '/src/assets/images/SbiLogo.png',
       // Replace with: import SBILogo from '../../assets/logos/sbi-logo.png';
     },
     {
       id: 2,
       name: 'ONGC', 
-      logo: 'https://via.placeholder.com/200x100/ff6600/ffffff?text=ONGC',
+      logo: '/src/assets/images/ONGCLogo.png',
       // Replace with: import ONGCLogo from '../../assets/logos/ongc-logo.png';
     },
     {
       id: 3,
       name: 'IOCL',
-      logo: 'https://via.placeholder.com/200x100/cc0000/ffffff?text=IOCL',
+      logo: '/src/assets/images/IOCLLogo.jpeg',
       // Replace with: import IOCLLogo from '../../assets/logos/iocl-logo.png';
     }
   ];

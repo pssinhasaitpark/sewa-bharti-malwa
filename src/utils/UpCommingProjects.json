@@ -1,0 +1,61 @@
+{
+  "upcomingProjects": [
+    {
+      "id": 1,
+      "title": "Mobile Hospitals: Revolutionizing Rural & Tribal Healthcare",
+      "description": "Sewa Bharti's Mobile Medical Unit (MMU) project aims to transform healthcare access in rural and tribal areas of Madhya Pradesh, particularly in the Indore Division covering Mhow, Udainagar, Rajpur, Sendhwa, and Barwani. These 'Hospitals on Wheels' are equipped with modern medical tools, expert staff, and diagnostic facilities, delivering comprehensive care directly to underserved communities.",
+      "location": "Indore Division, Madhya Pradesh",
+      "beneficiaries": "Rural & Tribal Communities",
+      "startDate": "January 2025",
+      "endDate": "Ongoing",
+      "impact": "Bridging healthcare gaps in underserved areas",
+      "image": "/src/assets/icons/RightSlider2.svg",
+      "category": "Healthcare",
+      "status": "upcoming",
+      "keyFeatures": [
+        "Modern medical tools and diagnostic facilities",
+        "Expert medical staff",
+        "Public health education programs",
+        "Genetic disorder detection (Sickle Cell Disease)",
+        "Fluorosis treatment",
+        "Infectious disease control (TB, Hepatitis)",
+        "Maternal and child health services"
+      ],
+      "targetAreas": ["Mhow", "Udainagar", "Rajpur", "Sendhwa", "Barwani"],
+      "alignment": "National Health Mission (NHM)",
+      "objectives": [
+        "Reduce health disparities",
+        "Improve maternal/child health",
+        "Empower communities through preventive care",
+        "Ensure timely medical access",
+        "Disease eradication and holistic well-being"
+      ]
+    }
+  ],
+  "highlights": [
+    {
+      "id": 1,
+      "title": "Mobile Healthcare Initiative Launch",
+      "excerpt": "Revolutionary mobile medical units set to transform healthcare delivery in Madhya Pradesh's tribal and rural regions.",
+      "date": "January 15, 2025",
+      "views": 2450,
+      "image": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=300&h=200&fit=crop"
+    },
+    {
+      "id": 2,
+      "title": "Partnership with National Health Mission",
+      "excerpt": "Strategic collaboration announced to align mobile hospital services with national healthcare objectives.",
+      "date": "December 20, 2024",
+      "views": 1890,
+      "image": "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=300&h=200&fit=crop"
+    },
+    {
+      "id": 3,
+      "title": "Advanced Medical Equipment Procurement",
+      "excerpt": "State-of-the-art diagnostic tools and medical equipment acquired for comprehensive healthcare delivery.",
+      "date": "November 28, 2024",
+      "views": 1245,
+      "image": "https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=300&h=200&fit=crop"
+    }
+  ]
+}
