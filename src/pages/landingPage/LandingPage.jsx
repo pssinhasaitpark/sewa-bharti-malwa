@@ -15,6 +15,8 @@ import {
   Timeline,
   BlogSlider,
   FlagShipProject,
+  YoutubeSlider,
+  SocialMediaComponent,
 } from "../../components/index";
 import DescriptionSlider from "../../components/descriptionSlider/DescriptionSlider";
 import Partners from "../../components/partners/Partners.jsx"; // Import Partners component
@@ -65,6 +67,10 @@ const HomeLayout = ({ blogSliderRef, partnersRef }) => {
           </Col>
         </Row>
       </Container>
+      <Container className="my-4">
+        <YoutubeSlider />
+      </Container>
+
       <Container>
         <Row>
           <Col>
@@ -74,6 +80,9 @@ const HomeLayout = ({ blogSliderRef, partnersRef }) => {
       </Container>
       <Container className="my-4">
         <MomentCaptured />
+      </Container>
+      <Container className="my-4">
+        <SocialMediaComponent />
       </Container>
       <Container className="my-4" ref={blogSliderRef}>
         <BlogSlider />

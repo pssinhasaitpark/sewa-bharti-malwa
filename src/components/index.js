@@ -13,12 +13,13 @@ import Timeline from "./timeline/TimeLine.jsx";
 import MomentCaptured from "./momentCaptured/MomentCaptured.jsx";
 import BlogSlider from "./blogsSlider/BlogSlider.jsx";
 import Footer from "./footer/Footer.jsx";
-
+import YoutubeSlider from "./youtubeSlider/YoutubeSlider.jsx";
 import DonationBanner from "./donateHeroSection/DonateHeroSection.jsx";
 import DonationForm from "./donationForm/DonationForm.jsx";
 import FlagShipProject from "./flagshipProject/FlagShipProject.jsx";
-import JoinUs from "./joinHands/JoinHands.jsx"
+import JoinUs from "./joinHands/JoinHands.jsx";
 import GoalCardModel from "./model/GoalCardModel.jsx";
+import SocialMediaComponent from "./socialMediaComponent/SocialMediaComponent.jsx";
 export {
   Header,
   SliderSection,
@@ -39,5 +40,7 @@ export {
   DonationForm,
   FlagShipProject,
   GoalCardModel,
-  JoinUs
+  JoinUs,
+  YoutubeSlider,
+  SocialMediaComponent,
 };

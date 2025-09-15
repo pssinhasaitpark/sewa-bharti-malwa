@@ -1,0 +1,12 @@
+/* Add this to your global CSS or component style */
+.slick-prev:before,
+.slick-next:before {
+  color: black; /* Change arrow color */
+  font-size: 30px; /* Change arrow size */
+}
+.slick-prev {
+  left: 10px; /* Adjust position */
+}
+.slick-next {
+  right: 10px; /* Adjust position */
+}
