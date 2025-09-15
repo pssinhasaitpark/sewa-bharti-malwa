@@ -1,0 +1,159 @@
+/* DonationReceipt.css */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap');
+
+body {
+    font-family: "Noto Sans Devanagari", "Mangal", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: #000;
+}
+
+a:hover {
+    color: #222;
+    text-decoration: none;
+}
+
+.head-img {
+    width: 100%;
+    text-align: center;
+}
+
+.receipt-wrapper {
+    background: url(../images/receipt-bg.png) no-repeat center;
+    background-size: cover;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.footer {
+    background-color: #f7b815;
+    min-height: 80px;
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+}
+
+.mailbox img {
+    max-height: 20px;
+    vertical-align: middle;
+}
+
+.mailbox {
+    font-weight: 600;
+}
+
+.form-control {
+    height: 35px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #dcb783;
+}
+
+.form-control:focus {
+    outline: none;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.form label {
+    font-size: 1.1rem;
+}
+
+.form b {
+    font-size: 1.2rem;
+}
+
+.rupee-box {
+    background: #fff;
+    border-radius: 8px;
+    border: 2px solid #4f725a;
+    min-height: 35px;
+    padding: 1rem;
+}
+
+.rupee-box label {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #380616;
+}
+
+.rupee-box img {
+    display: block;
+}
+
+.rupee-box .form-control {
+    border: none;
+    font-size: 1.7rem;
+}
+
+.adhaksh-name-sign label {
+    display: block;
+}
+
+.adhaksh-name-sign span {
+    color: #7D0A0F;
+    font-weight: 600;
+}
+
+.gat-wrap {
+    background: #fff;
+    border-radius: 8px;
+    border: 2px solid #4f725a;
+    min-height: 55px;
+    padding: 1rem;
+    width: 100%;
+}
+
+.blue-label {
+    color: #30156a;
+}
+
+.sahog-nidhi {
+    color: #7d0604;
+    font-size: 2.6rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: underline;
+    padding-top: 2.5rem;
+}
+
+.avsar-text {
+    color: #264473;
+    font-size: 2.8rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .receipt-wrapper table td {
+        display: block;
+        width: 100%;
+        text-align: left !important;
+        padding-bottom: 2rem;
+    }
+
+    .sahog-nidhi {
+        font-size: 2.5rem;
+    }
+
+    .avsar-text {
+        font-size: 2.7rem;
+    }
+
+    .form-control {
+        width: 95% !important;
+        margin-bottom: 1rem;
+    }
+}
