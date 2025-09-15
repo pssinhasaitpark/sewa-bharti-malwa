@@ -10,7 +10,7 @@ import "./DonationForm.css";
 function DonationForm() {
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.createOrder);
-  
+
   const [customAmount, setCustomAmount] = useState("");
   const [selectedDonationType, setSelectedDonationType] = useState("once");
   const [selectedAmount, setSelectedAmount] = useState("");
@@ -27,7 +27,7 @@ function DonationForm() {
 
   const predefinedAmounts = [
     "₹ 4500.00",
-    "₹ 2000.00", 
+    "₹ 2000.00",
     "₹ 100.00",
     "₹ 3000.00",
     "₹ 9500.00",
@@ -88,7 +88,7 @@ function DonationForm() {
       // Step 1: Create order
       console.log("Creating order with amount:", amount);
       const orderResult = await dispatch(createOrder(amount)).unwrap();
-      
+
       if (!orderResult || !orderResult.id) {
         throw new Error("Failed to create order");
       }
@@ -98,7 +98,8 @@ function DonationForm() {
 
       // Step 2: Open Razorpay payment gateway
       const options = {
-        key: 'rzp_test_b0PSRa7kNhbHj3', // Replace with your actual key
+        // key: 'rzp_test_b0PSRa7kNhbHj3',
+         key: 'rzp_live_U2V9elOCyZBjic', 
         amount: amount * 100, // Amount in paise
         currency: 'INR',
         name: 'Sewa Bharti Malwa',
@@ -136,7 +137,7 @@ function DonationForm() {
             if (verificationResponse.data.success) {
               console.log('Payment verified successfully!');
               alert('Donation successful! Check your email for login credentials and receipt.');
-              
+
               // Reset form after successful donation
               setFormData({
                 fullName: "",
@@ -170,7 +171,7 @@ function DonationForm() {
 
       const razorpay = new window.Razorpay(options);
       razorpay.open();
-      
+
       razorpay.on('payment.failed', (paymentError) => {
         console.error('Payment Failed:', paymentError);
         alert('Payment failed. Please try again.');
@@ -417,7 +418,7 @@ function DonationForm() {
                   />
                 </Form>
               </Card.Body>
-              
+
               <Card
                 style={{ backgroundColor: "#F69866", border: "none" }}
                 className="p-4"
