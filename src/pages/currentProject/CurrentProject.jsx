@@ -236,9 +236,14 @@ import {
 } from "react-icons/fa";
 import "./CurrentProject.css";
 import projects from "../../utils/Projects.json";
-
+import { MaskGroup1,BlogImg1,BlogImg2,BlogImg3,BlogImg4,MaskGroup5,MaskGroup4,LeftSlide2,RightSlider2 } from "../../assets";
 const CurrentProject = () => {
   const currentProjects = projects.currentProjects;
+const projectImages = {
+  1: MaskGroup1,
+  2: LeftSlide2,
+  3: RightSlider2,
+};
 
   const recentNews = [
     {
@@ -248,8 +253,8 @@ const CurrentProject = () => {
         "Sewa Bharti's Tribal Hostels initiative has expanded to two new districts in Malwa, providing stable education and living environments for 200 additional children.",
       date: "September 1, 2025",
       views: 1250,
-      image:
-        "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop",
+      image:BlogImg3,
+        
     },
     {
       id: 2,
@@ -259,7 +264,7 @@ const CurrentProject = () => {
       date: "August 25, 2025",
       views: 987,
       image:
-        "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=300&h=200&fit=crop",
+        BlogImg4,
     },
     {
       id: 3,
@@ -269,7 +274,7 @@ const CurrentProject = () => {
       date: "August 15, 2025",
       views: 756,
       image:
-        "https://images.unsplash.com/photo-1612277795421-9bc7706a4a34?w=300&h=200&fit=crop",
+        LeftSlide2,
     },
     {
       id: 4,
@@ -279,7 +284,7 @@ const CurrentProject = () => {
       date: "August 10, 2025",
       views: 634,
       image:
-        "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=300&h=200&fit=crop",
+       RightSlider2,
     },
   ];
 
@@ -330,12 +335,12 @@ const CurrentProject = () => {
               </p>
             </div>
             <div className="projects-grid">
-              {currentProjects.map((project) => (
+               {currentProjects.map((project) => (
                 <Card key={project.id} className="project-card">
                   <div className="card-image-container">
                     <Card.Img
                       variant="top"
-                      src={project.image}
+                      src={projectImages[project.id]}
                       className="project-image"
                     />
                     <Badge

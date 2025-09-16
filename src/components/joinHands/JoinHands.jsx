@@ -1,49 +1,47 @@
-import React, { useState } from "react";
+import React from "react";
+import { useFormik } from "formik";
+import { joinHandsValidationSchema } from "../../utils/validationSchema/ValidationSchema";
 
-const SewaBhartiForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    mobile: "",
-    email: "",
-    address: "",
-    city: "",
-    services: {
-      donate: false,
-      volunteer: false,
-      csrActivity: false,
-      pledgeHours: false,
-      educate: false,
-      profession: false,
-      others: false,
+const JoinHands = () => {
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      mobile: "",
+      email: "",
+      address: "",
+      city: "",
+      services: {
+        donate: false,
+        volunteer: false,
+        csrActivity: false,
+        pledgeHours: false,
+        educate: false,
+        profession: false,
+        others: false,
+      },
+      othersText: "",
     },
-    othersText: "",
+    validationSchema: joinHandsValidationSchema,
+    onSubmit: (values, { setSubmitting, resetForm }) => {
+      setTimeout(() => {
+        console.log("Form submitted:", values);
+        alert(
+          "Thank you for your interest in joining Sewa Bharti Malwa! Your form has been submitted."
+        );
+        resetForm();
+        setSubmitting(false);
+      }, 1000);
+    },
   });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
 
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      services: {
-        ...prev.services,
-        [name]: checked,
-      },
-    }));
-  };
+    formik.setFieldValue(`services.${name}`, checked);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert(
-      "Thank you for your interest in joining Sewa Bharti Malva! Your form has been submitted."
-    );
+    // Clear othersText if others checkbox is unchecked
+    if (name === "others" && !checked) {
+      formik.setFieldValue("othersText", "");
+    }
   };
 
   return (
@@ -59,10 +57,10 @@ const SewaBhartiForm = () => {
             </div>
 
             <div className="card-body p-5">
-              <div>
+              <form onSubmit={formik.handleSubmit}>
                 {/* Personal Information Section */}
                 <div className="mb-4">
-                  <h5 className=" mb-3 border-bottom pb-2">
+                  <h5 className="mb-3 border-bottom pb-2">
                     <i className="bi bi-person-circle me-2"></i>Personal
                     Information
                   </h5>
@@ -74,33 +72,40 @@ const SewaBhartiForm = () => {
                       </label>
                       <input
                         type="text"
-                        className="form-control form-control-lg border-2"
+                        className={`form-control form-control-lg border-2 ${
+                          formik.touched.name && formik.errors.name ? "is-invalid" : ""
+                        }`}
                         id="name"
                         name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
+                        value={formik.values.name}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                         placeholder="Enter your full name"
-                        required
                       />
+                      {formik.touched.name && formik.errors.name && (
+                        <div className="invalid-feedback">{formik.errors.name}</div>
+                      )}
                     </div>
 
                     <div className="col-md-6">
-                      <label
-                        htmlFor="mobile"
-                        className="form-label fw-semibold"
-                      >
+                      <label htmlFor="mobile" className="form-label fw-semibold">
                         Mobile Number <span className="text-danger">*</span>
                       </label>
                       <input
                         type="tel"
-                        className="form-control form-control-lg border-2"
+                        className={`form-control form-control-lg border-2 ${
+                          formik.touched.mobile && formik.errors.mobile ? "is-invalid" : ""
+                        }`}
                         id="mobile"
                         name="mobile"
-                        value={formData.mobile}
-                        onChange={handleInputChange}
+                        value={formik.values.mobile}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                         placeholder="Enter mobile number"
-                        required
                       />
+                      {formik.touched.mobile && formik.errors.mobile && (
+                        <div className="invalid-feedback">{formik.errors.mobile}</div>
+                      )}
                     </div>
                   </div>
 
@@ -111,35 +116,42 @@ const SewaBhartiForm = () => {
                       </label>
                       <input
                         type="email"
-                        className="form-control form-control-lg border-2"
+                        className={`form-control form-control-lg border-2 ${
+                          formik.touched.email && formik.errors.email ? "is-invalid" : ""
+                        }`}
                         id="email"
                         name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                         placeholder="Enter your email address"
-                        required
                       />
+                      {formik.touched.email && formik.errors.email && (
+                        <div className="invalid-feedback">{formik.errors.email}</div>
+                      )}
                     </div>
                   </div>
 
                   <div className="row g-3 mt-1">
                     <div className="col-md-8">
-                      <label
-                        htmlFor="address"
-                        className="form-label fw-semibold"
-                      >
+                      <label htmlFor="address" className="form-label fw-semibold">
                         Address <span className="text-danger">*</span>
                       </label>
                       <textarea
-                        className="form-control border-2"
+                        className={`form-control border-2 ${
+                          formik.touched.address && formik.errors.address ? "is-invalid" : ""
+                        }`}
                         id="address"
                         name="address"
                         rows="2"
-                        value={formData.address}
-                        onChange={handleInputChange}
+                        value={formik.values.address}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                         placeholder="Enter your complete address"
-                        required
                       />
+                      {formik.touched.address && formik.errors.address && (
+                        <div className="invalid-feedback">{formik.errors.address}</div>
+                      )}
                     </div>
 
                     <div className="col-md-4">
@@ -148,14 +160,19 @@ const SewaBhartiForm = () => {
                       </label>
                       <input
                         type="text"
-                        className="form-control form-control-lg border-2"
+                        className={`form-control form-control-lg border-2 ${
+                          formik.touched.city && formik.errors.city ? "is-invalid" : ""
+                        }`}
                         id="city"
                         name="city"
-                        value={formData.city}
-                        onChange={handleInputChange}
+                        value={formik.values.city}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                         placeholder="Enter city"
-                        required
                       />
+                      {formik.touched.city && formik.errors.city && (
+                        <div className="invalid-feedback">{formik.errors.city}</div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -170,6 +187,12 @@ const SewaBhartiForm = () => {
                     </small>
                   </h5>
 
+                  {formik.touched.services && formik.errors.services && (
+                    <div className="alert alert-danger py-2 mb-3">
+                      <small>{formik.errors.services}</small>
+                    </div>
+                  )}
+
                   <div className="row g-3">
                     <div className="col-md-6">
                       <div className="card h-100 border-2 hover-shadow">
@@ -180,7 +203,7 @@ const SewaBhartiForm = () => {
                               type="checkbox"
                               id="donate"
                               name="donate"
-                              checked={formData.services.donate}
+                              checked={formik.values.services.donate}
                               onChange={handleCheckboxChange}
                             />
                             <label
@@ -204,7 +227,7 @@ const SewaBhartiForm = () => {
                               type="checkbox"
                               id="volunteer"
                               name="volunteer"
-                              checked={formData.services.volunteer}
+                              checked={formik.values.services.volunteer}
                               onChange={handleCheckboxChange}
                             />
                             <label
@@ -228,7 +251,7 @@ const SewaBhartiForm = () => {
                               type="checkbox"
                               id="csrActivity"
                               name="csrActivity"
-                              checked={formData.services.csrActivity}
+                              checked={formik.values.services.csrActivity}
                               onChange={handleCheckboxChange}
                             />
                             <label
@@ -252,7 +275,7 @@ const SewaBhartiForm = () => {
                               type="checkbox"
                               id="pledgeHours"
                               name="pledgeHours"
-                              checked={formData.services.pledgeHours}
+                              checked={formik.values.services.pledgeHours}
                               onChange={handleCheckboxChange}
                             />
                             <label
@@ -276,7 +299,7 @@ const SewaBhartiForm = () => {
                               type="checkbox"
                               id="educate"
                               name="educate"
-                              checked={formData.services.educate}
+                              checked={formik.values.services.educate}
                               onChange={handleCheckboxChange}
                             />
                             <label
@@ -300,7 +323,7 @@ const SewaBhartiForm = () => {
                               type="checkbox"
                               id="profession"
                               name="profession"
-                              checked={formData.services.profession}
+                              checked={formik.values.services.profession}
                               onChange={handleCheckboxChange}
                             />
                             <label
@@ -324,7 +347,7 @@ const SewaBhartiForm = () => {
                               type="checkbox"
                               id="others"
                               name="others"
-                              checked={formData.services.others}
+                              checked={formik.values.services.others}
                               onChange={handleCheckboxChange}
                             />
                             <label
@@ -336,16 +359,24 @@ const SewaBhartiForm = () => {
                             </label>
                           </div>
 
-                          {formData.services.others && (
+                          {formik.values.services.others && (
                             <div className="mt-2">
                               <input
                                 type="text"
-                                className="form-control"
+                                className={`form-control ${
+                                  formik.touched.othersText && formik.errors.othersText ? "is-invalid" : ""
+                                }`}
                                 name="othersText"
-                                value={formData.othersText}
-                                onChange={handleInputChange}
+                                value={formik.values.othersText}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 placeholder="Please specify your other service preference..."
                               />
+                              {formik.touched.othersText && formik.errors.othersText && (
+                                <div className="invalid-feedback">
+                                  {formik.errors.othersText}
+                                </div>
+                              )}
                             </div>
                           )}
                         </div>
@@ -359,20 +390,32 @@ const SewaBhartiForm = () => {
                   <button
                     type="submit"
                     className="btn btn-warning btn-lg py-3 fw-bold rounded-3 shadow"
-                    onClick={handleSubmit}
+                    disabled={!formik.isValid || formik.isSubmitting}
+                    style={{
+                      opacity: (!formik.isValid || formik.isSubmitting) ? 0.6 : 1
+                    }}
                   >
-                    <i className="bi bi-send-fill me-2"></i>
-                    Submit Registration
+                    {formik.isSubmitting ? (
+                      <>
+                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        Submitting...
+                      </>
+                    ) : (
+                      <>
+                        <i className="bi bi-send-fill me-2"></i>
+                        Submit Registration
+                      </>
+                    )}
                   </button>
                 </div>
 
                 <div className="text-center mt-3">
                   <small className="text-muted">
                     By submitting this form, you agree to join Sewa Bharti
-                    Malva's mission of community service.
+                    Malwa's mission of community service.
                   </small>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -381,4 +424,4 @@ const SewaBhartiForm = () => {
   );
 };
 
-export default SewaBhartiForm;
+export default JoinHands;

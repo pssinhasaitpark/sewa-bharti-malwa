@@ -66,7 +66,7 @@ const Footer = () => {
               </h1>
               <div className="phone-container">
                 <span className="phone-icon">📞</span>
-                <span className="phone-number">999-222-3334</span>
+                <span className="phone-number">+91 89898 22899</span>
               </div>
             </div>
             <img src={Polygon1} style={{ height: "53px" }} alt="" />
@@ -153,7 +153,9 @@ const Footer = () => {
                 <div className="d-flex social-icons-container mt-4">
                   <Link
                     to="#"
-                    onClick={() => openExternalLink("https://whatsapp.com")}
+                    onClick={() =>
+                      openExternalLink("https://wa.me/919893764540")
+                    }
                     aria-label="Follow us on WhatsApp"
                   >
                     <div className="icon-container px-2 py-2 rounded-2 border mt-2 me-3">
@@ -162,7 +164,11 @@ const Footer = () => {
                   </Link>
                   <Link
                     to="#"
-                    onClick={() => openExternalLink("https://facebook.com")}
+                    onClick={() =>
+                      openExternalLink(
+                        "https://www.facebook.com/Sewa-Bharti-Malwa-Prant-1750025541683150/"
+                      )
+                    }
                     aria-label="Follow us on Facebook"
                   >
                     <div className="icon-container px-2 py-2 rounded-2 border mt-2 me-3">
@@ -171,7 +177,11 @@ const Footer = () => {
                   </Link>
                   <Link
                     to="#"
-                    onClick={() => openExternalLink("https://instagram.com")}
+                    onClick={() =>
+                      openExternalLink(
+                        "https://www.instagram.com/sewabhartimalwaprantmp/"
+                      )
+                    }
                     aria-label="Follow us on Instagram"
                   >
                     <div className="icon-container px-2 py-2 rounded-2 border mt-2 me-3">
@@ -180,7 +190,11 @@ const Footer = () => {
                   </Link>
                   <Link
                     to="#"
-                    onClick={() => openExternalLink("https://youtube.com")}
+                    onClick={() =>
+                      openExternalLink(
+                        "https://www.youtube.com/channel/UCAxBwi9C87Jy2cqMEX4rlYQ"
+                      )
+                    }
                     aria-label="Follow us on YouTube"
                   >
                     <div className="icon-container px-2 py-2 rounded-2 border mt-2">

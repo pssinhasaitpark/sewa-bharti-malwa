@@ -11,13 +11,13 @@ import {
 const DonationPage = () => {
   return (
     <div className="d-flex flex-column min-vh-100 ">
-      <Row className="custom-width my-4">
-        <DonationBanner />
-      </Row>
+      {/* <Row className="custom-width my-4">
+       <DonationBanner />
+     </Row>
 
-      <div className="custom-width my-4">
-        <BlogSlider />
-      </div>
+     <div className="custom-width my-4">
+       <BlogSlider />
+    </div> */}
       <div className="custom-width my-4">
         <DonationForm />
       </div>

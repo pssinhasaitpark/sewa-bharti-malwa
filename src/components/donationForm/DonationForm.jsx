@@ -1,57 +1,71 @@
-import { Divide } from "lucide-react";
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
-import { IoIosCloudUpload } from "react-icons/io";
+import {
+  Container,
+  Row,
+  Col,
+  Form as BootstrapForm,
+  Button,
+  Card,
+} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { createOrder } from '../../redux/slice/CreateOrderSlice'
-import axiosInstance from '../../redux/axios/axios'
+import { createOrder } from "../../redux/slice/CreateOrderSlice";
+import axiosInstance from "../../redux/axios/axios";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { donationFormValidationSchema } from "../../utils/validationSchema/ValidationSchema";
 import "./DonationForm.css";
+import toast, { Toaster } from "react-hot-toast";
 
 function DonationForm() {
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.createOrder);
-
-  const [customAmount, setCustomAmount] = useState("");
   const [selectedDonationType, setSelectedDonationType] = useState("once");
   const [selectedAmount, setSelectedAmount] = useState("");
   const [selectedCitizenship, setSelectedCitizenship] = useState("indian");
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    mobile: "",
-    aadharNumber: "",
-    panNumber: "",
-    city: "",
-    certificate: false,
-  });
+  const [customAmount, setCustomAmount] = useState("");
 
-  const predefinedAmounts = [
-    "₹ 4500.00",
-    "₹ 2000.00",
-    "₹ 100.00",
-    "₹ 3000.00",
-    "₹ 9500.00",
-    "₹ 2300.00",
+  const predefinedAmountsOnce = [
+    "₹ 7,500.00",
+    "₹ 10,000.00",
+    "₹ 15,000.00",
+    "₹ 20,000.00",
+    "₹ 30,000.00",
+    "₹ 35,000.00",
+    "₹ 50,000.00",
+    "₹ 1,00,000.00",
+    "₹ 1,50,000.00",
   ];
+  const predefinedAmountsMonthly = [
+    "₹ 750.00",
+    "₹ 1000.00",
+    "₹ 1500.00",
+    "₹ 2000.00",
+    "₹ 3000.00",
+    "₹ 3500.00",
+    "₹ 5000.00",
+    "₹ 10,000.00",
+    "₹ 15,000.00",
+  ];
+  const predefinedAmounts =
+    selectedDonationType === "once"
+      ? predefinedAmountsOnce
+      : predefinedAmountsMonthly;
 
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
+  const getNumericAmount = (amountString) => {
+    if (selectedAmount === "custom") {
+      return parseFloat(customAmount) || 0;
+    }
+    return parseFloat(amountString.replace(/[₹\s,]/g, "")) || 0;
   };
 
-  // Load Razorpay script
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.async = true;
     script.onload = () => {
-      console.log('Razorpay script loaded successfully');
+      console.log("Razorpay script loaded successfully");
     };
     script.onerror = () => {
-      console.error('Error loading Razorpay script');
+      console.error("Error loading Razorpay script");
     };
     document.body.appendChild(script);
     return () => {
@@ -61,243 +75,209 @@ function DonationForm() {
     };
   }, []);
 
-  // Function to extract numeric value from amount string
-  const getNumericAmount = (amountString) => {
-    if (selectedAmount === "custom") {
-      return parseFloat(customAmount) || 0;
-    }
-    // Extract number from "₹ 4500.00" format
-    return parseFloat(amountString.replace(/[₹\s,]/g, '')) || 0;
-  };
+  useEffect(() => {
+    setSelectedAmount("");
+    setCustomAmount("");
+  }, [selectedDonationType]);
 
-  // Handle form submission and payment
-  const handleDonateNow = async () => {
+  const handleDonateNow = async (values, { setSubmitting }) => {
     try {
-      // Validate form
-      if (!selectedAmount || !formData.fullName || !formData.email || !formData.mobile) {
-        alert("Please fill all required fields and select an amount");
+      if (!selectedAmount) {
+        alert("Please select an amount");
         return;
       }
-
       const amount = getNumericAmount(selectedAmount);
       if (amount <= 0) {
         alert("Please enter a valid amount");
         return;
       }
-
-      // Step 1: Create order
-      console.log("Creating order with amount:", amount);
       const orderResult = await dispatch(createOrder(amount)).unwrap();
-
       if (!orderResult || !orderResult.id) {
         throw new Error("Failed to create order");
       }
-
       const razorpayOrderId = orderResult.id;
-      console.log("Order created successfully:", razorpayOrderId);
-
-      // Step 2: Open Razorpay payment gateway
       const options = {
-        // key: 'rzp_test_b0PSRa7kNhbHj3',
-         key: 'rzp_live_U2V9elOCyZBjic', 
-        amount: amount * 100, // Amount in paise
-        currency: 'INR',
-        name: 'Sewa Bharti Malwa',
-        description: 'Donation Transaction',
+        key: import.meta.env.VITE_RAZORPAY_KEY,
+        amount: amount * 100,
+        currency: "INR",
+        name: "Sewa Bharti Malwa",
+        description: "Donation Transaction",
         order_id: razorpayOrderId,
-        image: 'https://example.com/your_logo',
+        image: "https://example.com/your_logo",
         handler: async function (response) {
-          const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = response;
-          console.log("Payment successful:", response);
-
+          const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
+            response;
           try {
-            // Step 3: Verify payment with all user details
             const verificationData = {
               razorpay_order_id,
               razorpay_payment_id,
               razorpay_signature,
-              email: formData.email,
-              full_name: formData.fullName,
-              phone: formData.mobile,
+              email: values.email,
+              full_name: values.fullName,
+              phone: values.mobile,
               amount: amount,
-              aadharNumber: formData.aadharNumber,
-              panNumber: formData.panNumber,
-              city: formData.city,
+              aadharNumber: values.aadharNumber,
+              panNumber: values.panNumber,
+              city: values.city,
               citizenship: selectedCitizenship === "indian",
-              certificate: formData.certificate
+              certificate: values.certificate,
             };
-
-            console.log("Verifying payment with data:", verificationData);
-
             const verificationResponse = await axiosInstance.post(
-              '/donations/verify-payment',
+              "/donations/verify-payment",
               verificationData
             );
-
             if (verificationResponse.data.success) {
-              console.log('Payment verified successfully!');
-              alert('Donation successful! Check your email for login credentials and receipt.');
-
-              // Reset form after successful donation
-              setFormData({
-                fullName: "",
-                email: "",
-                mobile: "",
-                aadharNumber: "",
-                panNumber: "",
-                city: "",
-                certificate: false,
-              });
-              setSelectedAmount("");
-              setCustomAmount("");
+              toast.success(verificationResponse?.data.message);
             } else {
-              console.error('Payment verification failed:', verificationResponse.data);
-              alert('Payment verification failed. Please contact support.');
+              alert("Payment verification failed. Please contact support.");
             }
           } catch (error) {
-            console.error('Error verifying payment:', error);
-            alert('Error verifying payment. Please contact support.');
+            console.error("Error verifying payment:", error);
+            alert("Error verifying payment. Please contact support.");
           }
         },
         prefill: {
-          name: formData.fullName,
-          email: formData.email,
-          contact: formData.mobile,
+          name: values.fullName,
+          email: values.email,
+          contact: values.mobile,
         },
         theme: {
-          color: '#3399cc',
+          color: "#3399cc",
         },
       };
-
       const razorpay = new window.Razorpay(options);
       razorpay.open();
-
-      razorpay.on('payment.failed', (paymentError) => {
-        console.error('Payment Failed:', paymentError);
-        alert('Payment failed. Please try again.');
+      razorpay.on("payment.failed", (paymentError) => {
+        console.error("Payment Failed:", paymentError);
+        alert("Payment failed. Please try again.");
       });
-
     } catch (error) {
       console.error("Error in donation process:", error);
-      alert('Error processing donation. Please try again.');
+      alert("Error processing donation. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
   return (
     <div className="min-vh-100 text-white rounded">
+      <Toaster />
       <Container fluid className="bg-light">
         {/* Progress Steps */}
-        <Row className="justify-content-center mb-4">
-          <Col xs="auto" className="d-flex align-items-center mt-5">
+        <Row className="justify-content-center mb-2">
+          <Col xs="auto" className="d-flex align-items-center mt-3">
             <div className="d-flex align-items-center">
               <div
-                className="rounded-circle text-white d-flex align-items-center fs-3 justify-content-center"
+                className="rounded-circle text-white d-flex align-items-center justify-content-center"
                 style={{
-                  width: "60px",
-                  height: "60px",
+                  width: "40px",
+                  height: "40px",
                   position: "absolute",
-                  marginLeft: "-1.5%",
+                  marginLeft: "-1%",
                   border: "2px solid #ffffff",
                   backgroundColor: "#F35500",
+                  fontSize: "16px",
                 }}
               >
                 1
               </div>
               <div
-                className="text-white px-5 py-2 rounded"
+                className="text-white pe-4 py-1 rounded"
                 style={{
                   backgroundColor: "#F35500",
+                  fontSize: "16px",
+                  paddingLeft: "2rem",
                 }}
               >
-                <div className="fs-4 font-weight-bold">
-                  Choose Donation <br /> Amount
-                </div>
+                Choose Donation <br /> Amount
               </div>
             </div>
             <div
               className="mx-2"
               style={{
                 height: "2px",
-                width: "40px",
+                width: "30px",
                 backgroundColor: "#FB8241",
               }}
             ></div>
             <div className="d-flex align-items-center">
               <div
-                className="rounded-circle text-white d-flex align-items-center fs-3 justify-content-center"
+                className="rounded-circle text-white d-flex align-items-center justify-content-center"
                 style={{
-                  width: "60px",
-                  height: "60px",
+                  width: "40px",
+                  height: "40px",
                   position: "absolute",
-                  marginLeft: "-1.5%",
+                  marginLeft: "-1%",
                   border: "2px solid #ffffff",
                   backgroundColor: "#FB8241",
+                  fontSize: "18px",
                 }}
               >
                 2
               </div>
               <div
-                className="text-white px-5 py-2 rounded"
+                className="text-white pe-3 py-1 rounded"
                 style={{
                   backgroundColor: "#FB8241",
+                  fontSize: "16px",
+                  paddingLeft: "2rem",
                 }}
               >
-                <div className="fs-4 font-weight-bold">
-                  Fill your personal <br /> details
-                </div>
+                Fill your personal <br /> details
               </div>
             </div>
             <div
               className="mx-2"
               style={{
                 height: "2px",
-                width: "40px",
+                width: "30px",
                 backgroundColor: "#D1874E",
               }}
             ></div>
             <div className="d-flex align-items-center">
               <div
-                className="rounded-circle text-white d-flex align-items-center fs-3 justify-content-center"
+                className="rounded-circle text-white d-flex align-items-center justify-content-center"
                 style={{
-                  width: "60px",
-                  height: "60px",
+                  width: "40px",
+                  height: "40px",
                   position: "absolute",
-                  marginLeft: "-1.5%",
+                  marginLeft: "-1%",
                   border: "2px solid #ffffff",
                   backgroundColor: "#FB8241",
+                  fontSize: "18px",
                 }}
               >
                 3
               </div>
               <div
-                className="text-white rounded px-5"
+                className="text-white rounded pe-3 py-3"
                 style={{
                   backgroundColor: "#FB8241",
-                  padding: "26px",
+                  fontSize: "16px",
+                  paddingLeft: "2rem",
                 }}
               >
-                <div className="fs-4 font-weight-bold">Donation Submitted</div>
+                Donation Submitted
               </div>
             </div>
           </Col>
         </Row>
-        <div className="border-bottom mt-5 mb-5"></div>
-
+        <hr className="mt-3 mb-3" />
         {/* Main Content */}
-        <Row className="g-4">
+        <Row className="g-3">
           {/* Left Side - Donation Selection */}
           <Col lg={6}>
-            <Card className="mb-4 mt-5 border-card">
+            <Card className="mb-3 border-card">
               <Card.Header
-                className="text-white p-3 rounded-3"
-                style={{ backgroundColor: "#FB8241" }}
+                className="text-white p-2"
+                style={{ backgroundColor: "#FB8241", fontSize: "18px" }}
               >
-                <h5 className="mb-0 fs-4">Select Donation Type</h5>
+                <h6 className="mb-0">Select Donation Type</h6>
               </Card.Header>
-              <Card.Body className="mb-3 mt-4">
-                <Form>
+              <Card.Body className="p-3 py-4">
+                <BootstrapForm>
                   <div className="d-flex">
-                    <Form.Check
+                    <BootstrapForm.Check
                       type="radio"
                       id="donateOnce"
                       name="donationType"
@@ -305,10 +285,10 @@ function DonationForm() {
                       value="once"
                       checked={selectedDonationType === "once"}
                       onChange={(e) => setSelectedDonationType(e.target.value)}
-                      className="mr-3 fw-medium"
-                      style={{ fontSize: "20px" }}
+                      className="mr-3"
+                      style={{ fontSize: "16px" }}
                     />
-                    <Form.Check
+                    <BootstrapForm.Check
                       type="radio"
                       id="donateMonthly"
                       name="donationType"
@@ -316,22 +296,21 @@ function DonationForm() {
                       value="monthly"
                       checked={selectedDonationType === "monthly"}
                       onChange={(e) => setSelectedDonationType(e.target.value)}
-                      className="mx-5 fw-medium"
-                      style={{ fontSize: "20px" }}
+                      className="mx-4"
+                      style={{ fontSize: "16px" }}
                     />
                   </div>
-                </Form>
+                </BootstrapForm>
               </Card.Body>
-              <hr className="mx-4" />
-              <Card className="mt-5 border-card">
+              <Card className="border-card">
                 <Card.Header
-                  className="text-white p-3 rounded-3 mb-5"
-                  style={{ backgroundColor: "#FB8241" }}
+                  className="text-white p-2 my-3"
+                  style={{ backgroundColor: "#FB8241", fontSize: "18px" }}
                 >
-                  <h5 className="mb-0">Choose Donation Amount</h5>
+                  <h6 className="mb-0 ">Choose Donation Amount</h6>
                 </Card.Header>
-                <Card.Body className="mx-3">
-                  <Row className="g-4 mb-3">
+                <Card.Body className="p-3">
+                  <Row className="g-4 mb-5">
                     {predefinedAmounts.map((amount, index) => (
                       <Col xs={4} key={index}>
                         <Button
@@ -347,6 +326,7 @@ function DonationForm() {
                               selectedAmount === amount ? "#007bff" : "#CACACA",
                             color: "#000000",
                             border: "none",
+                            fontSize: "16px",
                           }}
                         >
                           {amount}
@@ -354,12 +334,14 @@ function DonationForm() {
                       </Col>
                     ))}
                   </Row>
-                  <hr className="my-5 py-2" />
+                  <hr className="my-3" />
                   <Button
-                    className="w-50 py-2 border border-2 fs-4 fw-bolder"
+                    className="w-50 py-2 border border-2"
                     style={{
                       backgroundColor: "#F15700",
                       border: "none",
+                      fontSize: "16px",
+                      fontWeight: "bold",
                     }}
                     onClick={() => {
                       setSelectedAmount("custom");
@@ -367,15 +349,12 @@ function DonationForm() {
                   >
                     Custom Amount
                   </Button>
-
                   {selectedAmount === "custom" && (
-                    <Form.Control
+                    <BootstrapForm.Control
                       type="number"
                       placeholder="Enter custom amount"
-                      className="mt-3 p-3"
-                      style={{
-                        marginBottom: "10.2rem",
-                      }}
+                      className="mt-2 p-2"
+                      style={{ fontSize: "16px" }}
                       value={customAmount}
                       onChange={(e) => setCustomAmount(e.target.value)}
                     />
@@ -384,19 +363,18 @@ function DonationForm() {
               </Card>
             </Card>
           </Col>
-
           {/* Right Side - Personal Details */}
           <Col lg={6}>
-            <Card className="mb-4 mt-5 border-card">
+            <Card className="mb-3 border-card">
               <Card.Header
-                className="text-white p-3 rounded-3"
-                style={{ backgroundColor: "#FB8241" }}
+                className="text-white p-2"
+                style={{ backgroundColor: "#FB8241", fontSize: "18px" }}
               >
-                <h5 className="mb-0 fs-4">Select Your Citizenship</h5>
+                <h6 className="mb-0">Select Your Citizenship</h6>
               </Card.Header>
-              <Card.Body className="mb-5">
-                <Form className="d-flex justify-content-between">
-                  <Form.Check
+              <Card.Body className="p-3">
+                <BootstrapForm>
+                  <BootstrapForm.Check
                     type="radio"
                     id="indianCitizen"
                     name="citizenship"
@@ -404,9 +382,10 @@ function DonationForm() {
                     value="indian"
                     checked={selectedCitizenship === "indian"}
                     onChange={(e) => setSelectedCitizenship(e.target.value)}
-                    className="mb-2 fs-5 fw-medium"
+                    className="mb-2"
+                    style={{ fontSize: "16px" }}
                   />
-                  <Form.Check
+                  <BootstrapForm.Check
                     type="radio"
                     id="nriCitizen"
                     name="citizenship"
@@ -414,156 +393,248 @@ function DonationForm() {
                     value="nri"
                     checked={selectedCitizenship === "nri"}
                     onChange={(e) => setSelectedCitizenship(e.target.value)}
-                    className="mb-2 fs-5 fw-medium"
+                    className="mb-2"
+                    style={{ fontSize: "16px" }}
                   />
-                </Form>
+                </BootstrapForm>
               </Card.Body>
-
               <Card
                 style={{ backgroundColor: "#F69866", border: "none" }}
-                className="p-4"
+                className="p-2"
               >
                 <Card.Header
-                  className="text-dark"
-                  style={{ backgroundColor: "#FB8241", border: "none" }}
+                  className="text-dark p-2"
+                  style={{
+                    backgroundColor: "#FB8241",
+                    border: "none",
+                    fontSize: "18px",
+                  }}
                 >
-                  <h5 className="mb-0 fs-4 fw-medium">Personal Detail</h5>
+                  <h6 className="mb-0">Personal Detail</h6>
                 </Card.Header>
-                <Card.Body>
-                  <Form>
-                    <Form.Group className="mb-3">
-                      <Row>
-                        <Col md={6}>
-                          <Form.Label className="text-dark">Full Name*</Form.Label>
-                          <Form.Control
-                            className="p-3 ps-4 border border-2 rounded-3"
-                            type="text"
-                            name="fullName"
-                            value={formData.fullName}
-                            onChange={handleInputChange}
-                            placeholder="Full Name"
-                            required
-                          />
-                        </Col>
-                        <Col md={6}>
-                          <Form.Label className="text-dark">Mobile Number*</Form.Label>
-                          <Form.Control
-                            type="tel"
-                            className="p-3 ps-4 border border-2 rounded-3"
-                            name="mobile"
-                            value={formData.mobile}
-                            onChange={handleInputChange}
-                            placeholder="Mobile Number"
-                            required
-                          />
-                        </Col>
-                      </Row>
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
-                      <Row>
-                        <Col md={6}>
-                          <Form.Label className="text-dark">Email ID*</Form.Label>
-                          <Form.Control
-                            type="email"
-                            name="email"
-                            className="p-3 ps-4 border border-2 rounded-3"
-                            value={formData.email}
-                            onChange={handleInputChange}
-                            placeholder="Email ID"
-                            required
-                          />
-                        </Col>
-                        <Col md={6}>
-                          <Form.Label className="text-dark">Aadhar Card no.*</Form.Label>
-                          <Form.Control
-                            type="text"
-                            name="aadharNumber"
-                            className="p-3 ps-4 border border-2 rounded-3"
-                            value={formData.aadharNumber}
-                            onChange={handleInputChange}
-                            placeholder="Aadhar Number"
-                            required
-                          />
-                        </Col>
-                      </Row>
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
-                      <Row>
-                        <Col md={6}>
-                          <Form.Label className="text-dark">Pan card no*</Form.Label>
-                          <Form.Control
-                            type="text"
-                            name="panNumber"
-                            className="p-3 ps-4 border border-2 rounded-3"
-                            value={formData.panNumber}
-                            onChange={handleInputChange}
-                            placeholder="Pan card no."
-                            required
-                          />
-                        </Col>
-                        <Col md={6}>
-                          <Form.Label className="text-dark">City*</Form.Label>
-                          <Form.Control
-                            type="text"
-                            name="city"
-                            className="p-3 ps-4 border border-2 rounded-3"
-                            value={formData.city}
-                            onChange={handleInputChange}
-                            placeholder="City"
-                            required
-                          />
-                        </Col>
-                      </Row>
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
-                      <Row>
-                        <Col md={12}>
-                          <Form.Label className="text-dark">Selected Donation Amount</Form.Label>
-                          <Form.Control
-                            type="text"
-                            className="p-3 ps-4 border border-2 rounded-3"
-                            value={selectedAmount === "custom" ? `₹ ${customAmount}` : selectedAmount}
-                            readOnly
-                          />
-                        </Col>
-                      </Row>
-                    </Form.Group>
-
-                    <p className="text-dark mb-4 fs-4">
-                      Please CHECK YOUR EMAIL FOR THE LOGIN CREDENTIALS AND LOGIN
-                      DONATION RECEIPTS <br /> And Receipts.
-                    </p>
-
-                    <Form.Check
-                      type="checkbox"
-                      id="certificate"
-                      name="certificate"
-                      label="I Would Like To Receive 80(G) Certificate"
-                      checked={formData.certificate}
-                      onChange={handleInputChange}
-                      className="text-dark mb-3 fs-5"
-                    />
-
-                    <Button
-                      className="w-50 py-2 fs-4 fw-bolder border-0"
-                      style={{
-                        backgroundColor: "#F15700",
-                      }}
-                      onClick={handleDonateNow}
-                      disabled={loading}
-                    >
-                      {loading ? "Processing..." : "Donate Now"}
-                    </Button>
-
-                    {error && (
-                      <div className="alert alert-danger mt-3" role="alert">
-                        {error}
-                      </div>
+                <Card.Body className="p-3">
+                  <Formik
+                    initialValues={{
+                      fullName: "",
+                      email: "",
+                      mobile: "",
+                      aadharNumber: "",
+                      panNumber: "",
+                      city: "",
+                      certificate: false,
+                    }}
+                    validationSchema={donationFormValidationSchema}
+                    onSubmit={handleDonateNow}
+                  >
+                    {({ values, isSubmitting, setFieldValue }) => (
+                      <Form>
+                        <BootstrapForm.Group className="mb-2">
+                          <Row>
+                            <Col md={6}>
+                              <BootstrapForm.Label
+                                className="text-dark mb-1"
+                                style={{ fontSize: "15px" }}
+                              >
+                                Full Name*
+                              </BootstrapForm.Label>
+                              <Field
+                                as={BootstrapForm.Control}
+                                type="text"
+                                name="fullName"
+                                placeholder="Full Name"
+                                className="p-2 border border-2 rounded-3"
+                                style={{ fontSize: "16px" }}
+                              />
+                              <ErrorMessage
+                                name="fullName"
+                                component="div"
+                                className="text-danger"
+                              />
+                            </Col>
+                            <Col md={6}>
+                              <BootstrapForm.Label
+                                className="text-dark mb-1"
+                                style={{ fontSize: "15px" }}
+                              >
+                                Mobile Number*
+                              </BootstrapForm.Label>
+                              <Field
+                                as={BootstrapForm.Control}
+                                type="tel"
+                                name="mobile"
+                                placeholder="Mobile Number"
+                                className="p-2 border border-2 rounded-3"
+                                style={{ fontSize: "16px" }}
+                              />
+                              <ErrorMessage
+                                name="mobile"
+                                component="div"
+                                className="text-danger"
+                              />
+                            </Col>
+                          </Row>
+                        </BootstrapForm.Group>
+                        <BootstrapForm.Group className="mb-2">
+                          <Row>
+                            <Col md={6}>
+                              <BootstrapForm.Label
+                                className="text-dark mb-1"
+                                style={{ fontSize: "15px" }}
+                              >
+                                Email ID*
+                              </BootstrapForm.Label>
+                              <Field
+                                as={BootstrapForm.Control}
+                                type="email"
+                                name="email"
+                                placeholder="Email ID"
+                                className="p-2 border border-2 rounded-3"
+                                style={{ fontSize: "16px" }}
+                              />
+                              <ErrorMessage
+                                name="email"
+                                component="div"
+                                className="text-danger"
+                              />
+                            </Col>
+                            <Col md={6}>
+                              <BootstrapForm.Label
+                                className="text-dark mb-1"
+                                style={{ fontSize: "15px" }}
+                              >
+                                Aadhar Card no.*
+                              </BootstrapForm.Label>
+                              <Field
+                                as={BootstrapForm.Control}
+                                type="text"
+                                name="aadharNumber"
+                                placeholder="Aadhar Number"
+                                className="p-2 border border-2 rounded-3"
+                                style={{ fontSize: "16px" }}
+                              />
+                              <ErrorMessage
+                                name="aadharNumber"
+                                component="div"
+                                className="text-danger"
+                              />
+                            </Col>
+                          </Row>
+                        </BootstrapForm.Group>
+                        <BootstrapForm.Group className="mb-2">
+                          <Row>
+                            <Col md={6}>
+                              <BootstrapForm.Label
+                                className="text-dark mb-1"
+                                style={{ fontSize: "15px" }}
+                              >
+                                Pan card no*
+                              </BootstrapForm.Label>
+                              <Field
+                                as={BootstrapForm.Control}
+                                type="text"
+                                name="panNumber"
+                                placeholder="Pan card no."
+                                className="p-2 border border-2 rounded-3"
+                                style={{ fontSize: "16px" }}
+                                onChange={(e) => {
+                                  const upperCaseValue = e.target.value.toUpperCase();
+                                  setFieldValue("panNumber", upperCaseValue);
+                                }}
+                              />
+                              <ErrorMessage
+                                name="panNumber"
+                                component="div"
+                                className="text-danger"
+                              />
+                            </Col>
+                            <Col md={6}>
+                              <BootstrapForm.Label
+                                className="text-dark mb-1"
+                                style={{ fontSize: "15px" }}
+                              >
+                                City*
+                              </BootstrapForm.Label>
+                              <Field
+                                as={BootstrapForm.Control}
+                                type="text"
+                                name="city"
+                                placeholder="City"
+                                className="p-2 border border-2 rounded-3"
+                                style={{ fontSize: "16px" }}
+                              />
+                              <ErrorMessage
+                                name="city"
+                                component="div"
+                                className="text-danger"
+                              />
+                            </Col>
+                          </Row>
+                        </BootstrapForm.Group>
+                        <BootstrapForm.Group className="mb-2">
+                          <Row>
+                            <Col md={12}>
+                              <BootstrapForm.Label
+                                className="text-dark mb-1"
+                                style={{ fontSize: "15px" }}
+                              >
+                                Selected Donation Amount
+                              </BootstrapForm.Label>
+                              <BootstrapForm.Control
+                                type="text"
+                                className="p-2 border border-2 rounded-3"
+                                value={
+                                  selectedAmount === "custom"
+                                    ? `₹ ${customAmount}`
+                                    : selectedAmount
+                                }
+                                readOnly
+                                style={{ fontSize: "16px" }}
+                              />
+                            </Col>
+                          </Row>
+                        </BootstrapForm.Group>
+                        <p
+                          className="text-dark mb-3"
+                          style={{ fontSize: "14px" }}
+                        >
+                          Please CHECK YOUR EMAIL FOR THE LOGIN CREDENTIALS AND
+                          LOGIN DONATION RECEIPTS And Receipts.
+                        </p>
+                        <Field
+                          as={BootstrapForm.Check}
+                          type="checkbox"
+                          id="certificate"
+                          name="certificate"
+                          label="I Would Like To Receive 80(G) Certificate"
+                          className="text-dark mb-3"
+                          style={{ fontSize: "16px" }}
+                        />
+                        <Button
+                          className="w-50 py-2 border-0"
+                          style={{
+                            backgroundColor: "#F15700",
+                            fontSize: "16px",
+                            fontWeight: "bold",
+                          }}
+                          type="submit"
+                          disabled={loading || isSubmitting}
+                        >
+                          {loading || isSubmitting
+                            ? "Processing..."
+                            : "Donate Now"}
+                        </Button>
+                        {error && (
+                          <div
+                            className="alert alert-danger mt-2 p-2"
+                            role="alert"
+                            style={{ fontSize: "13px" }}
+                          >
+                            {error}
+                          </div>
+                        )}
+                      </Form>
                     )}
-                  </Form>
+                  </Formik>
                 </Card.Body>
               </Card>
             </Card>

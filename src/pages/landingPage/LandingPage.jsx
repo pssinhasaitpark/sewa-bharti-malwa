@@ -37,13 +37,13 @@ const HomeLayout = ({ blogSliderRef, partnersRef }) => {
       <Container className="my-4">
         <Banner />
       </Container>
-      <Container>
+      {/* <Container>
         <Row>
           <Col>
             <p>What We ARe____________</p>
           </Col>
         </Row>
-      </Container>
+      </Container> */}
       <Container className="my-4">
         <FlagShipComponent />
       </Container>
@@ -71,13 +71,13 @@ const HomeLayout = ({ blogSliderRef, partnersRef }) => {
         <YoutubeSlider />
       </Container>
 
-      <Container>
+      {/* <Container>
         <Row>
           <Col>
             <p>What We ARe____________</p>
           </Col>
         </Row>
-      </Container>
+      </Container> */}
       <Container className="my-4">
         <MomentCaptured />
       </Container>

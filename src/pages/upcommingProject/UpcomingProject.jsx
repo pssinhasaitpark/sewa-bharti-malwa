@@ -13,10 +13,19 @@ import {
 } from "react-icons/fa";
 import "./UpcomingProject.css";
 import projectData from "../../utils/UpCommingProjects.json";
-
+import {RightSlider2,LeftSlide3,event3,event2} from '../../assets/index'
 const UpcomingProject = () => {
   const { upcomingProjects, highlights } = projectData;
-
+const projectImages = {
+  1: RightSlider2,
+  
+};
+const projectImageupcoming = {
+  1: LeftSlide3,
+  2: event3,
+  3: event2,
+  
+};
   const getCategoryColor = (category) => {
     const colors = {
       "Relief & Welfare": "warning",
@@ -82,7 +91,7 @@ const UpcomingProject = () => {
                   <div className="card-image-container">
                     <Card.Img
                       variant="top"
-                      src={project.image}
+                        src={projectImages[project.id]}
                       className="project-image"
                     />
                     <Badge
@@ -174,7 +183,12 @@ const UpcomingProject = () => {
                 {highlights.map((item) => (
                   <Card key={item.id} className="news-card">
                     <div className="news-image-container">
-                      <Card.Img src={item.image} className="news-image" />
+                            <Card.Img
+        variant="top"
+        src={projectImageupcoming[item.id]}
+        className="news-image"
+      />
+
                     </div>
                     <Card.Body className="news-body">
                       <Card.Title className="news-title">
