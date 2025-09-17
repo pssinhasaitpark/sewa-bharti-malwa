@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { joinHandsValidationSchema } from "../../utils/validationSchema/ValidationSchema";
+import {
+  submitJoinHandsForm,
+  resetState,
+  clearError,
+  selectJoinHandsLoading,
+  selectJoinHandsSuccess,
+  selectJoinHandsError,
+  selectJoinHandsMessage,
+} from "../../redux/slice/JoinHandsSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 const JoinHands = () => {
+  const dispatch = useDispatch();
+
+  // Redux state selectors
+  const loading = useSelector(selectJoinHandsLoading);
+  const success = useSelector(selectJoinHandsSuccess);
+  const error = useSelector(selectJoinHandsError);
+  const message = useSelector(selectJoinHandsMessage);
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -22,17 +41,38 @@ const JoinHands = () => {
       othersText: "",
     },
     validationSchema: joinHandsValidationSchema,
-    onSubmit: (values, { setSubmitting, resetForm }) => {
-      setTimeout(() => {
-        console.log("Form submitted:", values);
-        alert(
-          "Thank you for your interest in joining Sewa Bharti Malwa! Your form has been submitted."
-        );
-        resetForm();
-        setSubmitting(false);
-      }, 1000);
+    onSubmit: (values, { resetForm }) => {
+      dispatch(submitJoinHandsForm(values))
+        .unwrap()
+        .then(() => {
+          resetForm();
+        })
+        .catch(() => {
+          // Error is already handled by the slice
+        });
     },
   });
+
+  // Handle success/error notifications with toast
+  useEffect(() => {
+    if (success) {
+      toast.success(message || "Registration submitted successfully!");
+      // Reset state after showing message
+      setTimeout(() => {
+        dispatch(resetState());
+      }, 3000);
+    }
+  }, [success, message, dispatch]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      // Clear error after showing
+      setTimeout(() => {
+        dispatch(clearError());
+      }, 3000);
+    }
+  }, [error, dispatch]);
 
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
@@ -46,11 +86,14 @@ const JoinHands = () => {
 
   return (
     <div className="container-fluid bg-light min-vh-100 py-5">
+      <Toaster />
       <div className="row justify-content-center">
         <div className="col-lg-8 col-xl-6">
           <div className="card shadow-lg border-0 rounded-4">
             <div className="card-header flagBackgroundGradiant text-white text-center py-4 rounded-top-4">
-              <h2 className="mb-0 fw-bold upholding-dharma">Join Sewa Bharti Malva</h2>
+              <h2 className="mb-0 fw-bold upholding-dharma">
+                Join Sewa Bharti Malva
+              </h2>
               <p className="mb-0 mt-2 opacity-75">
                 Serving the Community with Dedication
               </p>
@@ -73,7 +116,9 @@ const JoinHands = () => {
                       <input
                         type="text"
                         className={`form-control form-control-lg border-2 ${
-                          formik.touched.name && formik.errors.name ? "is-invalid" : ""
+                          formik.touched.name && formik.errors.name
+                            ? "is-invalid"
+                            : ""
                         }`}
                         id="name"
                         name="name"
@@ -81,20 +126,28 @@ const JoinHands = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         placeholder="Enter your full name"
+                        disabled={loading}
                       />
                       {formik.touched.name && formik.errors.name && (
-                        <div className="invalid-feedback">{formik.errors.name}</div>
+                        <div className="invalid-feedback">
+                          {formik.errors.name}
+                        </div>
                       )}
                     </div>
 
                     <div className="col-md-6">
-                      <label htmlFor="mobile" className="form-label fw-semibold">
+                      <label
+                        htmlFor="mobile"
+                        className="form-label fw-semibold"
+                      >
                         Mobile Number <span className="text-danger">*</span>
                       </label>
                       <input
                         type="tel"
                         className={`form-control form-control-lg border-2 ${
-                          formik.touched.mobile && formik.errors.mobile ? "is-invalid" : ""
+                          formik.touched.mobile && formik.errors.mobile
+                            ? "is-invalid"
+                            : ""
                         }`}
                         id="mobile"
                         name="mobile"
@@ -102,9 +155,12 @@ const JoinHands = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         placeholder="Enter mobile number"
+                        disabled={loading}
                       />
                       {formik.touched.mobile && formik.errors.mobile && (
-                        <div className="invalid-feedback">{formik.errors.mobile}</div>
+                        <div className="invalid-feedback">
+                          {formik.errors.mobile}
+                        </div>
                       )}
                     </div>
                   </div>
@@ -117,7 +173,9 @@ const JoinHands = () => {
                       <input
                         type="email"
                         className={`form-control form-control-lg border-2 ${
-                          formik.touched.email && formik.errors.email ? "is-invalid" : ""
+                          formik.touched.email && formik.errors.email
+                            ? "is-invalid"
+                            : ""
                         }`}
                         id="email"
                         name="email"
@@ -125,21 +183,29 @@ const JoinHands = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         placeholder="Enter your email address"
+                        disabled={loading}
                       />
                       {formik.touched.email && formik.errors.email && (
-                        <div className="invalid-feedback">{formik.errors.email}</div>
+                        <div className="invalid-feedback">
+                          {formik.errors.email}
+                        </div>
                       )}
                     </div>
                   </div>
 
                   <div className="row g-3 mt-1">
                     <div className="col-md-8">
-                      <label htmlFor="address" className="form-label fw-semibold">
+                      <label
+                        htmlFor="address"
+                        className="form-label fw-semibold"
+                      >
                         Address <span className="text-danger">*</span>
                       </label>
                       <textarea
                         className={`form-control border-2 ${
-                          formik.touched.address && formik.errors.address ? "is-invalid" : ""
+                          formik.touched.address && formik.errors.address
+                            ? "is-invalid"
+                            : ""
                         }`}
                         id="address"
                         name="address"
@@ -148,9 +214,12 @@ const JoinHands = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         placeholder="Enter your complete address"
+                        disabled={loading}
                       />
                       {formik.touched.address && formik.errors.address && (
-                        <div className="invalid-feedback">{formik.errors.address}</div>
+                        <div className="invalid-feedback">
+                          {formik.errors.address}
+                        </div>
                       )}
                     </div>
 
@@ -161,7 +230,9 @@ const JoinHands = () => {
                       <input
                         type="text"
                         className={`form-control form-control-lg border-2 ${
-                          formik.touched.city && formik.errors.city ? "is-invalid" : ""
+                          formik.touched.city && formik.errors.city
+                            ? "is-invalid"
+                            : ""
                         }`}
                         id="city"
                         name="city"
@@ -169,9 +240,12 @@ const JoinHands = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         placeholder="Enter city"
+                        disabled={loading}
                       />
                       {formik.touched.city && formik.errors.city && (
-                        <div className="invalid-feedback">{formik.errors.city}</div>
+                        <div className="invalid-feedback">
+                          {formik.errors.city}
+                        </div>
                       )}
                     </div>
                   </div>
@@ -205,6 +279,7 @@ const JoinHands = () => {
                               name="donate"
                               checked={formik.values.services.donate}
                               onChange={handleCheckboxChange}
+                              disabled={loading}
                             />
                             <label
                               className="form-check-label fw-semibold"
@@ -229,6 +304,7 @@ const JoinHands = () => {
                               name="volunteer"
                               checked={formik.values.services.volunteer}
                               onChange={handleCheckboxChange}
+                              disabled={loading}
                             />
                             <label
                               className="form-check-label fw-semibold"
@@ -253,6 +329,7 @@ const JoinHands = () => {
                               name="csrActivity"
                               checked={formik.values.services.csrActivity}
                               onChange={handleCheckboxChange}
+                              disabled={loading}
                             />
                             <label
                               className="form-check-label fw-semibold"
@@ -277,6 +354,7 @@ const JoinHands = () => {
                               name="pledgeHours"
                               checked={formik.values.services.pledgeHours}
                               onChange={handleCheckboxChange}
+                              disabled={loading}
                             />
                             <label
                               className="form-check-label fw-semibold"
@@ -301,6 +379,7 @@ const JoinHands = () => {
                               name="educate"
                               checked={formik.values.services.educate}
                               onChange={handleCheckboxChange}
+                              disabled={loading}
                             />
                             <label
                               className="form-check-label fw-semibold"
@@ -325,6 +404,7 @@ const JoinHands = () => {
                               name="profession"
                               checked={formik.values.services.profession}
                               onChange={handleCheckboxChange}
+                              disabled={loading}
                             />
                             <label
                               className="form-check-label fw-semibold"
@@ -349,6 +429,7 @@ const JoinHands = () => {
                               name="others"
                               checked={formik.values.services.others}
                               onChange={handleCheckboxChange}
+                              disabled={loading}
                             />
                             <label
                               className="form-check-label fw-semibold"
@@ -364,19 +445,24 @@ const JoinHands = () => {
                               <input
                                 type="text"
                                 className={`form-control ${
-                                  formik.touched.othersText && formik.errors.othersText ? "is-invalid" : ""
+                                  formik.touched.othersText &&
+                                  formik.errors.othersText
+                                    ? "is-invalid"
+                                    : ""
                                 }`}
                                 name="othersText"
                                 value={formik.values.othersText}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 placeholder="Please specify your other service preference..."
+                                disabled={loading}
                               />
-                              {formik.touched.othersText && formik.errors.othersText && (
-                                <div className="invalid-feedback">
-                                  {formik.errors.othersText}
-                                </div>
-                              )}
+                              {formik.touched.othersText &&
+                                formik.errors.othersText && (
+                                  <div className="invalid-feedback">
+                                    {formik.errors.othersText}
+                                  </div>
+                                )}
                             </div>
                           )}
                         </div>
@@ -390,20 +476,24 @@ const JoinHands = () => {
                   <button
                     type="submit"
                     className="btn btn-warning btn-lg py-3 fw-bold rounded-3 shadow"
-                    disabled={!formik.isValid || formik.isSubmitting}
+                    disabled={!formik.isValid || loading}
                     style={{
-                      opacity: (!formik.isValid || formik.isSubmitting) ? 0.6 : 1
+                      opacity: !formik.isValid || loading ? 0.6 : 1,
                     }}
                   >
-                    {formik.isSubmitting ? (
+                    {loading ? (
                       <>
-                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        <span
+                          className="spinner-border spinner-border-sm me-2"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
                         Submitting...
                       </>
                     ) : (
                       <>
-                        <i className="bi bi-send-fill me-2"></i>
-                        Submit Registration
+                        <i className="bi bi-send-fill  me-2"></i>
+                        <span className="text-light">Submit Registration</span>
                       </>
                     )}
                   </button>
